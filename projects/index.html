@@ -1,0 +1,55 @@
+---
+layout: default
+title: Projects
+---
+
+<div class="home">
+  <div class="row pack">
+    {% assign myprojects = site.projects | sort: 'priority' %} {% for project in
+    myprojects %}
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 card">
+      <a href="{{ project.url | prepend: site.baseurl }}" class="index-anchor">
+        <div class="panel panel-default">
+          {% if project.bannerImage %}
+          <img
+            width="100%"
+            src="{{site.baseurl}}{{project.url}}/{{project.bannerImage}}"
+            alt="{{project.title}}"
+          />
+          {% endif %}
+
+          <div class="panel-body">
+            <span style="display: block">
+              <h1
+                class="panel-title"
+                style="font-family: Raleway; font-size: 1.8em"
+              >
+                {{ project.title | truncate: 100 }}
+              </h1>
+            </span>
+            <span style="display: block">
+              <h4>{{ project.techUsed | truncate: 100 }}</h4>
+            </span>
+          </div>
+          {% if project.bannerDescription %}
+          <div class="panel-body" style="padding-top: 0; font-size: 1.05em">
+            <small>
+              {{ project.bannerDescription | strip_html | strip_newlines
+              }}</small
+            >
+          </div>
+          {% else %}
+          <div class="panel-body" style="padding-top: 0; font-size: 1.05em">
+            <small>
+              {{ project.excerpt | strip_html | strip_newlines | truncate: 200
+              }}</small
+            >
+          </div>
+          {% endif %}
+        </div>
+      </a>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>

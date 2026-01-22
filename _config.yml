@@ -1,0 +1,60 @@
+# Site settings
+title: Pranav Bansal
+email: okpranavbansal@gmail.com
+description: >-
+  Personal portfolio and blog of Pranav Bansal.
+profilePicture: profile.jpeg
+
+baseurl: ""
+url: "https://okpranavbansal.github.io" 
+
+# Social Links
+
+
+github: "https://github.com/okpranavbansal"
+linkedin: "https://www.linkedin.com/in/okpranavbansal/"
+email: "okpranavbansal@gmail.com"
+
+# Theme and plugins
+theme: minima
+plugins:
+  - jekyll-feed
+
+# Markdown and permalinks
+markdown: kramdown
+permalink: /:title/
+
+# Sass compression
+sass:
+  style: compressed
+  quiet_deps: true
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:name
+
+# Include pages from `_pages`
+include: ['_pages']
+
+# Optional features
+analytics: false
+
+# Default image if needed
+default-image: default-banner.png
+
+# footer
+# copyright:
+#   name:  Pranav Bansal
+#   link: 'http://github.com/okpranavbansal'
+
+
+# Comments
+# go to disqus site and create a admin dashboard for your site
+# disqus: yes
+# disqus-shortname: okpranavbansal-github-io
+
+
+# feeds are only relevant for posts, not useful for my projects
+allowPostFeeds: false
