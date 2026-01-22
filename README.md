@@ -1,6 +1,6 @@
 # Portfolio Website
 
-This is the Portfolio Website of [Pranav Bansal](https://github.com/okpranavbansal).
+This is the Portfolio Website of [Pranav Bansal](https://okpranavbansal.github.io).
 
 ## Installation & Running
 
