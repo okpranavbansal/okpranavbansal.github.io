@@ -1,12 +1,6 @@
 # Portfolio Website
 
-This is the Portfolio Website of [Pranav Bansal](https://github.com/okpranavbansal).
-
-## Future Features
-
-- [ ] Group projects by year to show code growth
-
-## Dev
+This is the Portfolio Website of [Pranav Bansal](https://okpranavbansal.github.io).
 
 ## Installation & Running
 
