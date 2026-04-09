@@ -79,3 +79,10 @@ These decisions were made based on project requirements.
 
 - Feel free to use the theme.
 - Content copyright © 2026 **Pranav Bansal**.
+
+## Author
+
+**Pranav Bansal** — AI Infrastructure & SRE Engineer
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/okpranavbansal)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/okpranavbansal)
