@@ -2,7 +2,7 @@
 layout: page
 title: Resume
 permalink: /resume/
-pdfLink: /uploads/PranavBansal_Resume.pdf
+pdfLink: /uploads/Pranav_Bansal_SRE.pdf
 baseurl: okpranavbansal.github.io
 ---
 
