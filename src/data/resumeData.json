@@ -81,16 +81,22 @@
     {
       "company": "Wyzard.ai (Nexura Technologies)",
       "period": "Nov 2025 – Present",
-      "context": "28+ microservices, Agentic AI Platform",
+      "context": "Agentic AI Platform",
       "roles": [
         {
           "title": "Senior AI Platform Engineer",
-          "subtitle": "promoted 1 Apr 2026 from Engineer",
+          "subtitle": "Apr 2026 – Present",
           "bullets": [
-            "Partnered directly with founders/CXOs to lead end-to-end AWS → GCP migration (ECS Fargate → GKE), building scalable AI model-serving infrastructure for 28+ microservices.",
-            "Built self-healing GitOps delivery via ArgoCD (App of Apps pattern) with KSOPS sidecars for on-the-fly SOPS secret decryption, reducing deployment toil by 40%.",
-            "Secured Kubernetes boundary using GCP Gateway API, HTTPRoutes, and Cloud Armor; enforced least-privilege via GKE Workload Identity Federation.",
+            "Owns AWS → GCP migration execution across GKE runtime, Gateway API / Cloud Armor, Workload Identity, and ArgoCD delivery for Wyzard's agentic AI platform.",
             "Engineered eval-driven quality gates for AI workflows on Vertex AI (Model Garden, Agent Engine) and observability dashboards using Datadog and Langfuse."
+          ]
+        },
+        {
+          "title": "Engineer (DevOps / SRE)",
+          "subtitle": "Nov 2025 – Mar 2026",
+          "bullets": [
+            "Partnered directly with founders/CXOs on AWS → GCP migration work (ECS Fargate → GKE), building scalable AI model-serving infrastructure across a multi-service platform.",
+            "Built GitOps delivery via ArgoCD (App of Apps pattern) with KSOPS sidecars for on-the-fly SOPS secret decryption, reducing deployment toil by 40%."
           ]
         }
       ]
@@ -108,7 +114,7 @@
             "**ASTRA (OLX Indonesia):** Refactored Terraform code for OLX Indonesia apps, improving IaC maintainability, module readability, and environment consistency.",
             "**Wyzard.ai:** Built Jenkins CI/CD pipelines with auto-scaling ECS runners and git-crypt/S3-backed ECS secrets storage; deployed LGTM observability, reducing deployment failures by 30%.",
             "**Wyzard.ai:** Executed seamless AWS cross-account migrations during entity spin-off, re-architecting IAM trust policies and VPC peering with zero downtime.",
-            "**Wyzard.ai:** Reduced AWS spend by 50–60% via Spot strategy and RDS tuning; managed production databases (DynamoDB, MongoDB Atlas) and analytics engines (ClickHouse, Neo4j)."
+            "**Wyzard.ai:** Reduced AWS/ECS infrastructure spend by 50–60% via Spot strategy and RDS tuning; managed production databases (DynamoDB, MongoDB Atlas) and analytics engines (ClickHouse, Neo4j)."
           ]
         },
         {
