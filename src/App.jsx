@@ -1,13 +1,90 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import resumeData from './data/resumeData.json';
 import './App.css';
+
+const BOOT_SEQUENCE = [
+  { text: "Initializing SRE portfolio...", delay: 400 },
+  { text: "Loading modules: react, vite, vanilla-css, sync-resume.js", delay: 500 },
+  { text: "Running query: SELECT * FROM developers WHERE name = 'pranav_bansal'", delay: 650 },
+  { text: "Status: 200 OK - developer profile found", delay: 400, type: "success" },
+  { text: "Loading structured resume catalog from Obsidian wiki...", delay: 500 },
+  { text: "Injecting metrics: Uptime 99.99%, Toil -40%, Cost -60%", delay: 600 },
+  { text: "Rendering profile dashboard...", delay: 400 }
+];
 
 function App() {
   const { name, title, location, links, education, skills, experience, projects } = resumeData;
   const [activeConsoleTab, setActiveConsoleTab] = useState('kubectl');
+  
+  // Boot loading states
+  const [booting, setBooting] = useState(true);
+  const [visibleLines, setVisibleLines] = useState([]);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    let currentIdx = 0;
+    
+    const runSequence = () => {
+      if (currentIdx < BOOT_SEQUENCE.length) {
+        setVisibleLines((prev) => [...prev, BOOT_SEQUENCE[currentIdx]]);
+        timer = setTimeout(() => {
+          currentIdx++;
+          runSequence();
+        }, BOOT_SEQUENCE[currentIdx].delay);
+      } else {
+        // Wait briefly after completion, then fade out
+        timer = setTimeout(() => {
+          setIsFadingOut(true);
+          // Terminate boot screen after transition
+          timer = setTimeout(() => {
+            setBooting(false);
+          }, 800); // matches CSS opacity transition
+        }, 800);
+      }
+    };
+
+    runSequence();
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (booting) {
+    return (
+      <div className={`boot-overlay ${isFadingOut ? 'fade-out' : ''}`}>
+        <div className="boot-terminal-window">
+          <div className="boot-terminal-header">
+            <div className="mac-controls">
+              <span className="close"></span>
+              <span className="minimize"></span>
+              <span className="maximize"></span>
+            </div>
+            <span className="boot-title">dev@portfolio: ~</span>
+          </div>
+          <div className="boot-terminal-body font-mono">
+            {visibleLines.map((line, idx) => (
+              <div key={idx} className={`boot-line ${line.type === 'success' ? 'text-success' : ''}`}>
+                <span className="prompt">$ &gt;</span> {line.text}
+              </div>
+            ))}
+            {visibleLines.length < BOOT_SEQUENCE.length && (
+              <div className="boot-line active-cursor">
+                <span className="prompt">$ &gt;</span><span className="blinking-cursor">_</span>
+              </div>
+            )}
+            {visibleLines.length === BOOT_SEQUENCE.length && (
+              <div className="boot-success-footer">
+                <br />
+                <span className="success-banner">&gt;&gt; BOOT SYSTEM SUCCESSFUL</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="portfolio-container">
+    <div className="portfolio-container fade-in-dashboard">
       {/* Background blueprint grid overlay */}
       <div className="blueprint-grid"></div>
       
