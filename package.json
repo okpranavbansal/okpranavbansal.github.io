@@ -6,7 +6,8 @@
   "scripts": {
     "sync": "node scripts/sync-resume.js",
     "dev": "npm run sync && vite",
-    "build": "node scripts/sync-resume.js || true && vite build",
+    "build": "npm run sync:optional && vite build",
+    "sync:optional": "node scripts/sync-resume.js --optional",
     "lint": "eslint .",
     "preview": "vite preview"
   },
