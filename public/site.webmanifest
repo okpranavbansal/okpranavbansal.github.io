@@ -1,0 +1,17 @@
+{
+  "name": "Pranav Bansal Portfolio",
+  "short_name": "Pranav",
+  "description": "SRE and AI platform engineering portfolio for Pranav Bansal.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050608",
+  "theme_color": "#050608",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
