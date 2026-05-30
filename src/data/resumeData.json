@@ -1,6 +1,6 @@
 {
   "name": "Pranav Bansal",
-  "title": "SRE Resume",
+  "title": "Site Reliability & Platform Engineer",
   "location": "Gurgaon, India / Remote",
   "links": {
     "linkedin": "https://www.linkedin.com/in/okpranavbansal/",
@@ -84,7 +84,8 @@
       "context": "28+ microservices, Agentic AI Platform",
       "roles": [
         {
-          "title": "Senior AI Platform Engineer (promoted from Engineer)",
+          "title": "Senior AI Platform Engineer",
+          "subtitle": "promoted 1 Apr 2026 from Engineer",
           "bullets": [
             "Partnered directly with founders/CXOs to lead end-to-end AWS → GCP migration (ECS Fargate → GKE), building scalable AI model-serving infrastructure for 28+ microservices.",
             "Built self-healing GitOps delivery via ArgoCD (App of Apps pattern) with KSOPS sidecars for on-the-fly SOPS secret decryption, reducing deployment toil by 40%.",
@@ -100,7 +101,8 @@
       "context": "Key Projects: ASTRA (OLX Indonesia) & Wyzard.ai",
       "roles": [
         {
-          "title": "Engineer (DevOps / SRE) | _Jun 2025 – Oct 2025_",
+          "title": "Engineer (DevOps / SRE)",
+          "subtitle": "Jun 2025 – Oct 2025",
           "bullets": [
             "**ASTRA (OLX Indonesia):** Supported team-led New Relic → Datadog & Grafana (Loki) observability migration for 80+ microservices (9M+ MAU), contributing service onboarding and log pipeline validation.",
             "**ASTRA (OLX Indonesia):** Refactored Terraform code for OLX Indonesia apps, improving IaC maintainability, module readability, and environment consistency.",
@@ -110,7 +112,8 @@
           ]
         },
         {
-          "title": "Engineer Intern (Converted to Full-Time) | _Jan 2024 – May 2025_",
+          "title": "Engineer Intern",
+          "subtitle": "Converted to Full-Time · Jan 2024 – May 2025",
           "bullets": [
             "Provisioned baseline cloud environments across dev, staging, and production using Terraform, establishing IaC standards that eliminated environment parity drift.",
             "Containerized 5+ monolithic legacy applications with Docker, integrating them into automated GitLab CI pipelines and cutting release cycles from days to hours.",

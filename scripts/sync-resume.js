@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+/* global process */
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -116,8 +118,8 @@ function parseMarkdown(mdContent) {
       if (line.startsWith('### ')) {
         const companyPeriod = line.replace('### ', '').trim();
         const parts = companyPeriod.split('|').map(p => p.trim());
-        const company = parts[0];
-        const period = parts[1] ? parts[1].replace(/_/g, '') : '';
+        const company = parts[0].trim();
+        const period = parts[1] ? parts[1].replace(/_/g, '').trim() : '';
         currentCompany = {
           company,
           period,
@@ -129,10 +131,28 @@ function parseMarkdown(mdContent) {
       } else if (currentCompany) {
         if (line.startsWith('_') && line.endsWith('_')) {
           currentCompany.context = line.replace(/_/g, '').trim();
-        } else if (line.startsWith('**') && (line.includes('promoted') || line.includes('Engineer') || line.includes('Intern'))) {
-          // It's a role title
+        } else if (line.startsWith('**')) {
+          // Parse role title lines like:
+          // **Senior AI Platform Engineer** (promoted from Engineer)
+          // **Engineer (DevOps / SRE)** | _Jun 2025 – Oct 2025_
+          // **Engineer Intern (Converted to Full-Time)** | _Jan 2024 – May 2025_
+          const rawTitle = line.replace(/\*\*/g, '').trim();
+          
+          // Split on " | " to separate title from date range
+          const pipeParts = rawTitle.split(/\s*\|\s*/);
+          let titlePart = pipeParts[0].trim();
+          let subtitlePart = pipeParts[1] ? pipeParts[1].replace(/_/g, '').trim() : '';
+          
+          // Handle parenthetical subtitle like (promoted from Engineer)
+          const promoMatch = titlePart.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+          if (promoMatch && (promoMatch[2].includes('promoted') || promoMatch[2].includes('Converted'))) {
+            titlePart = promoMatch[1].trim();
+            subtitlePart = subtitlePart ? `${promoMatch[2]} · ${subtitlePart}` : promoMatch[2];
+          }
+          
           currentRole = {
-            title: line.replace(/\*\*/g, '').trim(),
+            title: titlePart,
+            subtitle: subtitlePart,
             bullets: []
           };
           currentCompany.roles.push(currentRole);
@@ -141,7 +161,8 @@ function parseMarkdown(mdContent) {
           // If no roles defined yet, create a default one
           if (!currentRole) {
             currentRole = {
-              title: currentCompany.company.includes('Roundcircle') ? 'DevOps / SRE Engineer' : 'Engineer',
+              title: 'Engineer',
+              subtitle: '',
               bullets: []
             };
             currentCompany.roles.push(currentRole);
