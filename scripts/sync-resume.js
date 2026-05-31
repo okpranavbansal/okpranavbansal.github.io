@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const MARKDOWN_PATH = path.resolve(
   __dirname,
-  "../../../../../../wiki/analyses/pranav-sre-resume-2026.md",
+  "../../wiki/analyses/pranav-sre-resume-2026.md",
 );
 const OUTPUT_DIR = path.resolve(__dirname, "../src/data");
 const OUTPUT_PATH = path.join(OUTPUT_DIR, "resumeData.json");

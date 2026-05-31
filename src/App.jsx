@@ -1,26 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import {
-  Activity,
-  Award,
+    Award,
   BadgeCheck,
   Briefcase,
-  Cloud,
-  CodeXml,
+    CodeXml,
   Command,
-  Database,
-  Download,
+    Download,
   ExternalLink,
-  GitBranch,
-  Globe,
+    Globe,
   GraduationCap,
   Layers,
   Mail,
   Moon,
-  Network,
-  Search,
-  Server,
-  ShieldCheck,
-  Sparkles,
+    Search,
+      Sparkles,
   Sun,
   Terminal,
 } from "lucide-react";
@@ -54,210 +47,17 @@ const LinkedinIcon = ({ size = 18, ...props }) => (
   </svg>
 );
 
-const proofStats = [
-  {
-    value: "AWS → GCP",
-    label: "Platform migration",
-    detail: "ECS Fargate to GKE",
-  },
-  {
-    value: "40%",
-    label: "Deployment toil reduced",
-    detail: "GitOps + KSOPS flow",
-  },
-  {
-    value: "50-60%",
-    label: "AWS/ECS cost reduced",
-    detail: "Spot + RDS tuning",
-  },
-  {
-    value: "9M+",
-    label: "MAU platform exposure",
-    detail: "ASTRA / OLX Indonesia",
-  },
-];
-
-const operatingSignals = [
-  {
-    icon: Cloud,
-    title: "Cloud migrations",
-    text: "AWS to GCP migration work across compute, IAM, networking, gateway policy, and runtime delivery.",
-  },
-  {
-    icon: GitBranch,
-    title: "GitOps delivery",
-    text: "Argo CD App of Apps, environment parity, SOPS/KSOPS secret handling, and lower deployment toil.",
-  },
-  {
-    icon: Activity,
-    title: "Reliability loops",
-    text: "SLO thinking, production runbooks, observability migrations, dashboards, and incident-ready operations.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Secure platform edges",
-    text: "Workload Identity Federation, Cloud Armor, Gateway API, IAM boundaries, and least-privilege defaults.",
-  },
-];
-
-const caseStudies = [
-  {
-    number: "01",
-    type: "Migration",
-    title: "AWS to GCP platform migration",
-    summary:
-      "Led Wyzard’s AWS-to-GCP platform migration path from ECS Fargate toward GKE, mapping compute, identity, networking, gateway policy, delivery, and service exposure into a cleaner Kubernetes runtime.",
-    points: [
-      "ECS Fargate to GKE",
-      "Workload Identity mapping",
-      "Gateway API + HTTPRoutes",
-      "Cloud Armor edge policy",
-    ],
-    icon: Network,
-  },
-  {
-    number: "02",
-    type: "Delivery",
-    title: "GitOps delivery and secrets flow",
-    summary:
-      "Built a repeatable delivery model with Argo CD App of Apps and SOPS/KSOPS so releases could move through encrypted configuration, drift visibility, and less manual deployment work.",
-    points: [
-      "Argo CD App of Apps",
-      "SOPS / KSOPS decryption",
-      "Kustomize overlays",
-      "40% toil reduction",
-    ],
-    icon: GitBranch,
-  },
-  {
-    number: "03",
-    type: "Operations",
-    title: "Observability, cost, and data operations",
-    summary:
-      "Worked across telemetry, cost, and data operations: Datadog/Grafana/Loki migrations, AWS Spot and RDS tuning, and operational stores used by product and analytics teams.",
-    points: [
-      "Datadog / Grafana / Loki",
-      "Spot strategy + RDS tuning",
-      "MongoDB Atlas + DynamoDB",
-      "ClickHouse + Neo4j",
-    ],
-    icon: Database,
-  },
-];
-
-const labProjects = [
-  {
-    title: "AWS to GCP Migration Playbook",
-    status: "Documentation system",
-    text: "A practical guide for ECS to GKE workload movement, IAM to Workload Identity mapping, and VPC/network rebuild decisions.",
-  },
-  {
-    title: "Real-time Analytics Hackathon",
-    status: "Runner Up, 2025",
-    text: "Built a Kafka, Apache Pinot, and Superset analytics platform under hackathon constraints.",
-  },
-  {
-    title: "Infra Projects Roadmap",
-    status: "Next public proof",
-    text: "Planned public projects include a Go K8s health checker, observability stack, Terraform environments, and a Backstage developer portal.",
-  },
-];
-
-const faq = [
-  {
-    q: "What kind of roles is Pranav targeting?",
-    a: "SRE, Platform Engineering, AI Infrastructure, Cloud Infrastructure, and leadership-facing platform ownership roles.",
-  },
-  {
-    q: "What is the strongest proof signal?",
-    a: "AWS to GCP migration work for an agentic AI platform, plus GitOps, observability, and cost outcomes.",
-  },
-  {
-    q: "What stack is interview-ready?",
-    a: "Kubernetes, GKE, AWS, GCP, Terraform, Argo CD, SOPS/KSOPS, Jenkins, Datadog, Grafana, Loki, Python, Bash, and Go fundamentals.",
-  },
-  {
-    q: "What makes the profile different from generic DevOps?",
-    a: "The portfolio is framed around reliability engineering, platform ownership, AI runtime operations, and business-impact infrastructure outcomes.",
-  },
-];
-
-const navItems = [
-  ["Proof", "#proof"],
-  ["Case Studies", "#case-studies"],
-  ["Stack", "#stack"],
-  ["Experience", "#experience"],
-  ["Lab", "#lab"],
-];
-
-const loaderSteps = [
-  "resolve profile",
-  "map platform proof",
-  "hydrate case studies",
-  "ready",
-];
-
-const architectureNodes = [
-  {
-    key: "gke",
-    label: "GKE",
-    command: "$ inspect runtime",
-    outcome: "gke/serving",
-    detail: "Kubernetes runtime for migrated ECS Fargate services.",
-    icon: Server,
-  },
-  {
-    key: "argocd",
-    label: "Argo CD",
-    command: "$ inspect delivery",
-    outcome: "gitops/synced",
-    detail:
-      "App of Apps delivery, environment parity, and lower manual release toil.",
-    icon: GitBranch,
-  },
-  {
-    key: "armor",
-    label: "Cloud Armor",
-    command: "$ inspect edge",
-    outcome: "edge/protected",
-    detail:
-      "Gateway API, HTTPRoutes, WAF rules, and least-privilege cloud boundaries.",
-    icon: ShieldCheck,
-  },
-  {
-    key: "datadog",
-    label: "Datadog",
-    command: "$ inspect telemetry",
-    outcome: "signals/live",
-    detail:
-      "Production visibility through dashboards, traces, logs, and AI workflow checks.",
-    icon: Activity,
-  },
-];
-
-const certificationShowcase = [
-  {
-    title: "AWS Certified Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    type: "Cloud foundation",
-    proof: "Credential details listed on LinkedIn or available on request.",
-    href: "https://www.linkedin.com/in/okpranavbansal/details/certifications/",
-  },
-  {
-    title: "Datadog Fundamentals",
-    issuer: "Datadog",
-    type: "Observability foundation",
-    proof: "Credential details listed on LinkedIn or available on request.",
-    href: "https://www.linkedin.com/in/okpranavbansal/details/certifications/",
-  },
-  {
-    title: "Kubernetes for Beginners",
-    issuer: "Kubernetes training",
-    type: "Container orchestration foundation",
-    proof: "Credential details listed on LinkedIn or available on request.",
-    href: "https://www.linkedin.com/in/okpranavbansal/details/certifications/",
-  },
-];
+import {
+  proofStats,
+  operatingSignals,
+  caseStudies,
+  labProjects,
+  faq,
+  navItems,
+  loaderSteps,
+  architectureNodes,
+  certificationShowcase
+} from "./data/siteContent.js";
 
 function parseBold(text) {
   const match = text.match(/^\*\*(.*?)\*\*\s*:?\s*(.*)/s);
@@ -371,7 +171,23 @@ function ArchitectureVisual() {
 }
 
 function App() {
-  const { name, title, location, links, education, skills, experience } =
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    const elements = document.querySelectorAll(".reveal-on-scroll");
+    elements.forEach((el) => observer.observe(el));
+    return () => elements.forEach((el) => observer.unobserve(el));
+  }, []);
+
+  const { name, location, links, education, skills, experience } =
     resumeData;
   const [theme, setTheme] = useState(() => {
     if (typeof window === "undefined") return "dark";
@@ -482,7 +298,7 @@ function App() {
       </header>
 
       <main id="top">
-        <section className="hero-section" aria-label="Profile introduction">
+        <section className="hero-section reveal-on-scroll" aria-label="Profile introduction">
           <div className="hero-copy">
             <div className="availability-pill">
               <span className="status-dot" />
@@ -490,13 +306,11 @@ function App() {
             </div>
             <h1>{name}</h1>
             <p className="hero-title">
-              {title} focused on AWS-to-GCP migration, GitOps delivery,
+              A "Curious Builder" focused on AWS-to-GCP migration, GitOps delivery,
               observability, and AI infrastructure reliability.
             </p>
             <p className="hero-summary">
-              I build and operate the platform layer behind AI products:
-              Kubernetes runtime, GitOps delivery, secure identity boundaries,
-              useful observability, and cost-aware cloud operations.
+              I am a T-shaped engineer operating the platform layer behind AI products. Beyond the terminal, I explore agentic AI, FinOps, and apply Munger's mental models to system design and value investing.
             </p>
             <div className="hero-actions">
               <a
@@ -531,7 +345,7 @@ function App() {
           <ArchitectureVisual />
         </section>
 
-        <section className="proof-grid" id="proof" aria-label="Proof metrics">
+        <section className="proof-grid reveal-on-scroll" id="proof" aria-label="Proof metrics">
           {proofStats.map((stat) => (
             <article key={stat.label} className="proof-card">
               <strong>{stat.value}</strong>
@@ -541,7 +355,7 @@ function App() {
           ))}
         </section>
 
-        <section className="profile-grid" aria-label="Operating profile">
+        <section className="profile-grid reveal-on-scroll" aria-label="Operating profile">
           <div className="profile-card lead-card">
             <SectionHeader
               eyebrow="Operating Profile"
@@ -562,7 +376,7 @@ function App() {
           <CommandSearch />
         </section>
 
-        <section id="case-studies" className="content-section">
+        <section id="case-studies" className="content-section reveal-on-scroll">
           <SectionHeader
             eyebrow="Case Studies"
             title="Three stories recruiters can ask deeper questions about."
@@ -589,7 +403,7 @@ function App() {
           </div>
         </section>
 
-        <section id="stack" className="content-section split-section">
+        <section id="stack" className="content-section split-section reveal-on-scroll">
           <div>
             <SectionHeader
               eyebrow="Stack Map"
@@ -612,7 +426,7 @@ function App() {
           </div>
         </section>
 
-        <section id="experience" className="content-section">
+        <section id="experience" className="content-section reveal-on-scroll">
           <SectionHeader
             eyebrow="Experience"
             title="Current and prior platform work."
@@ -650,12 +464,12 @@ function App() {
           </div>
         </section>
 
-        <section id="lab" className="content-section split-section">
+        <section id="lab" className="content-section split-section reveal-on-scroll">
           <div>
             <SectionHeader
-              eyebrow="Projects & Lab"
-              title="Public proof beyond job titles."
-              text="A tighter project surface that favors case-study depth over a long gallery."
+              eyebrow="Intellectual Curiosity"
+              title="Rabbit Holes & Beyond the Terminal."
+              text="Current explorations in Agentic AI, FinOps, and Value Investing."
               icon={Terminal}
             />
           </div>
@@ -672,7 +486,7 @@ function App() {
           </div>
         </section>
 
-        <section className="content-section credential-section">
+        <section className="content-section credential-section reveal-on-scroll">
           <div className="credential-card">
             <GraduationCap aria-hidden="true" />
             <div>
@@ -688,7 +502,7 @@ function App() {
             <Award aria-hidden="true" />
             <div>
               <span>Certifications</span>
-              <h2>Cloud, observability, and Kubernetes fundamentals.</h2>
+              <h2>observability, and Kubernetes fundamentals.</h2>
               <div className="cert-list">
                 {certificationShowcase.map((cert) => (
                   <article key={cert.title} className="cert-item">
@@ -715,7 +529,7 @@ function App() {
           </div>
         </section>
 
-        <section className="contact-section" aria-label="Contact">
+        <section className="contact-section reveal-on-scroll" aria-label="Contact">
           <div>
             <span className="section-kicker">
               <BadgeCheck aria-hidden="true" />
