@@ -1172,3 +1172,13 @@ main > section[id] {
     animation-delay: 0.2s;
   }
 }
+
+@media (max-width: 680px) {
+  .architecture-visual {
+    min-height: 680px;
+  }
+  .hero-asset {
+    top: 15%;
+    width: 65%;
+  }
+}
