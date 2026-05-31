@@ -1108,14 +1108,35 @@ main > section[id] {
   }
 
   .architecture-visual {
-    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    gap: 28px;
+    padding-bottom: 24px;
+  }
+
+  .hero-asset {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 60%;
+    margin: 0 auto;
   }
 
   .topology {
+    position: relative;
+    inset: auto;
     grid-template-columns: 1fr;
+    max-width: 100%;
   }
 
   .terminal-readout {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    margin-top: auto;
     align-items: flex-start;
     grid-template-columns: 1fr;
     gap: 4px;
@@ -1173,12 +1194,3 @@ main > section[id] {
   }
 }
 
-@media (max-width: 680px) {
-  .architecture-visual {
-    min-height: 680px;
-  }
-  .hero-asset {
-    top: 15%;
-    width: 65%;
-  }
-}
