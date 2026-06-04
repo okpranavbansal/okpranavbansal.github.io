@@ -1,25 +1,29 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-    Award,
+  Award,
   BadgeCheck,
   Briefcase,
-    CodeXml,
-  Command,
-    Download,
+  CodeXml,
+  Download,
   ExternalLink,
-    Globe,
+  Globe,
   GraduationCap,
   Layers,
   Mail,
   Moon,
-    Search,
-      Sparkles,
+  Sparkles,
   Sun,
   Terminal,
 } from "lucide-react";
 import resumeData from "./data/resumeData.json";
-import heroAsset from "./assets/hero.png";
 import "./App.css";
+
+import { Card } from "./components/UI/Card.jsx";
+import { Badge } from "./components/UI/Badge.jsx";
+import { BootLoader } from "./components/UI/BootLoader.jsx";
+import { SectionHeader } from "./components/Sections/SectionHeader.jsx";
+import { ArchitectureVisual } from "./components/Sections/ArchitectureVisual.jsx";
+import { CommandSearch } from "./components/Sections/CommandSearch.jsx";
 
 const GithubIcon = ({ size = 18, ...props }) => (
   <svg
@@ -52,11 +56,8 @@ import {
   operatingSignals,
   caseStudies,
   labProjects,
-  faq,
   navItems,
-  loaderSteps,
-  architectureNodes,
-  certificationShowcase
+  certificationShowcase,
 } from "./data/siteContent.js";
 
 function parseBold(text) {
@@ -66,107 +67,6 @@ function parseBold(text) {
     <>
       <strong>{match[1]}:</strong> {match[2]}
     </>
-  );
-}
-
-function SectionHeader({ eyebrow, title, text, icon: Icon }) {
-  return (
-    <div className="section-header">
-      <div className="section-kicker">
-        {Icon && <Icon aria-hidden="true" />}
-        <span>{eyebrow}</span>
-      </div>
-      <h2>{title}</h2>
-      {text && <p>{text}</p>}
-    </div>
-  );
-}
-
-function CommandSearch() {
-  const [query, setQuery] = useState("");
-  const results = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
-    if (!normalized) return faq;
-    return faq.filter((item) =>
-      `${item.q} ${item.a}`.toLowerCase().includes(normalized),
-    );
-  }, [query]);
-
-  return (
-    <div className="ask-panel" aria-label="Ask about Pranav">
-      <div className="ask-topline">
-        <Command aria-hidden="true" />
-        <span>Ask about reliability, cloud, or AI platform work</span>
-      </div>
-      <label className="ask-input">
-        <Search aria-hidden="true" />
-        <span className="sr-only">Search portfolio answers</span>
-        <input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Try: migration, GitOps, stack, roles..."
-        />
-      </label>
-      <div className="answer-stack">
-        {results.length ? (
-          results.map((item) => (
-            <article key={item.q} className="answer-card">
-              <h3>{item.q}</h3>
-              <p>{item.a}</p>
-            </article>
-          ))
-        ) : (
-          <article className="answer-card">
-            <h3>No direct match yet</h3>
-            <p>
-              Use the case studies and experience timeline below for the deeper
-              engineering proof.
-            </p>
-          </article>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function ArchitectureVisual() {
-  const [activeNodeKey, setActiveNodeKey] = useState("gke");
-  const activeNode =
-    architectureNodes.find((node) => node.key === activeNodeKey) ||
-    architectureNodes[0];
-
-  return (
-    <div
-      className="architecture-visual"
-      aria-label="Platform architecture visual"
-    >
-      <div className="visual-grid" />
-      <div className="visual-header">
-        <span className="status-dot" />
-        <span>platform-pranav.yaml</span>
-      </div>
-      <img src={heroAsset} alt="" className="hero-asset" />
-      <div className="topology">
-        {architectureNodes.map((node) => (
-          <button
-            key={node.key}
-            className={`topology-node ${node.key === activeNodeKey ? "primary" : ""}`}
-            type="button"
-            onClick={() => setActiveNodeKey(node.key)}
-            aria-pressed={node.key === activeNodeKey}
-            title={`Explain ${node.label}`}
-          >
-            <node.icon aria-hidden="true" />
-            <span>{node.label}</span>
-          </button>
-        ))}
-      </div>
-      <div className="terminal-readout" aria-live="polite">
-        <span>{activeNode.command}</span>
-        <strong>{activeNode.outcome}</strong>
-        <span>{activeNode.detail}</span>
-      </div>
-    </div>
   );
 }
 
@@ -193,7 +93,13 @@ function App() {
     if (typeof window === "undefined") return "dark";
     return localStorage.getItem("theme") || "dark";
   });
-  const [isBooting, setIsBooting] = useState(true);
+
+  const [isBooting, setIsBooting] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const hasBooted = sessionStorage.getItem("hasBooted");
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    return !hasBooted && !prefersReducedMotion;
+  });
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -201,46 +107,20 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setIsBooting(false), 1650);
+    if (!isBooting) return;
+    const timeout = window.setTimeout(() => {
+      setIsBooting(false);
+      sessionStorage.setItem("hasBooted", "true");
+    }, 1650);
     return () => window.clearTimeout(timeout);
-  }, []);
+  }, [isBooting]);
 
   const toggleTheme = () =>
     setTheme((current) => (current === "dark" ? "light" : "dark"));
 
   return (
     <div className="site-shell">
-      {isBooting && (
-        <div
-          className="boot-loader"
-          role="status"
-          aria-live="polite"
-          aria-label="Loading portfolio"
-        >
-          <div className="boot-card">
-            <div className="boot-mark">PB</div>
-            <div className="boot-copy">
-              <span>Initializing portfolio</span>
-              <strong>SRE / AI platform profile</strong>
-            </div>
-            <div className="boot-grid" aria-hidden="true">
-              {Array.from({ length: 16 }, (_, index) => (
-                <span key={index} />
-              ))}
-            </div>
-            <div className="boot-steps">
-              {loaderSteps.map((step, index) => (
-                <span key={step} style={{ "--step": index }}>
-                  {step}
-                </span>
-              ))}
-            </div>
-            <div className="boot-progress" aria-hidden="true">
-              <span />
-            </div>
-          </div>
-        </div>
-      )}
+      {isBooting && <BootLoader />}
 
       <header className="topbar" aria-label="Primary navigation">
         <a className="brand-mark" href="#top" aria-label="Pranav Bansal home">
@@ -299,18 +179,18 @@ function App() {
 
       <main id="top">
         <section className="hero-section reveal-on-scroll" aria-label="Profile introduction">
-          <div className="hero-copy">
+          <Card className="hero-copy" as="div" hasShadow>
             <div className="availability-pill">
               <span className="status-dot" />
               <span>Gurgaon / Remote · SRE & AI infrastructure</span>
             </div>
-            <h1>{name}</h1>
+            <h1 className="text-gradient-shimmer">{name}</h1>
             <p className="hero-title">
               A "Curious Builder" focused on AWS-to-GCP migration, GitOps delivery,
-              observability, and AI infrastructure reliability.
+              observability and AI infrastructure reliability.
             </p>
             <p className="hero-summary">
-              I am a T-shaped engineer operating the platform layer behind AI products. Beyond the terminal, I explore agentic AI, FinOps, and apply Munger's mental models to system design and value investing.
+              I am a T-shaped engineer operating the platform layer behind AI products. Beyond the terminal, I explore agentic AI and FinOps and apply Munger's mental models to system design and value investing.
             </p>
             <div className="hero-actions">
               <a
@@ -331,48 +211,39 @@ function App() {
                 <Download aria-hidden="true" />
                 Resume PDF
               </a>
-              <a
-                className="secondary-action"
-                href={links.github}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <GithubIcon />
-                View GitHub
-              </a>
             </div>
-          </div>
+          </Card>
           <ArchitectureVisual />
         </section>
 
         <section className="proof-grid reveal-on-scroll" id="proof" aria-label="Proof metrics">
           {proofStats.map((stat) => (
-            <article key={stat.label} className="proof-card">
+            <Card key={stat.label} className="proof-card" hasShadow>
               <strong>{stat.value}</strong>
               <span>{stat.label}</span>
               <p>{stat.detail}</p>
-            </article>
+            </Card>
           ))}
         </section>
 
         <section className="profile-grid reveal-on-scroll" aria-label="Operating profile">
-          <div className="profile-card lead-card">
+          <Card className="profile-card lead-card" as="div" hasShadow>
             <SectionHeader
               eyebrow="Operating Profile"
               title="Production platform work, explained through evidence."
-              text="A quick map of the reliability, migration, delivery, security, and observability work behind the profile."
+              text="A quick map of the reliability, migration, delivery, security and observability work behind the profile."
               icon={Sparkles}
             />
             <div className="signal-grid">
               {operatingSignals.map((signal) => (
-                <article key={signal.title} className="signal-card">
+                <Card key={signal.title} className="signal-card" as="article">
                   <signal.icon aria-hidden="true" />
                   <h3>{signal.title}</h3>
                   <p>{signal.text}</p>
-                </article>
+                </Card>
               ))}
             </div>
-          </div>
+          </Card>
           <CommandSearch />
         </section>
 
@@ -385,7 +256,7 @@ function App() {
           />
           <div className="case-grid">
             {caseStudies.map((study) => (
-              <article key={study.title} className="case-card">
+              <Card key={study.title} className="case-card">
                 <div className="case-top">
                   <span>{study.number}</span>
                   <study.icon aria-hidden="true" />
@@ -395,10 +266,10 @@ function App() {
                 <p>{study.summary}</p>
                 <div className="case-tags">
                   {study.points.map((point) => (
-                    <span key={point}>{point}</span>
+                    <Badge key={point}>{point}</Badge>
                   ))}
                 </div>
-              </article>
+              </Card>
             ))}
           </div>
         </section>
@@ -408,20 +279,20 @@ function App() {
             <SectionHeader
               eyebrow="Stack Map"
               title="Tools grouped by the work they enable."
-              text="Grouped for fast scanning across reliability, cloud, delivery, observability, AI operations, and data systems."
+              text="Grouped for fast scanning across reliability, cloud, delivery, observability, AI operations and data systems."
               icon={Layers}
             />
           </div>
           <div className="stack-board">
             {Object.entries(skills).map(([category, items]) => (
-              <article key={category} className="stack-group">
+              <Card key={category} className="stack-group">
                 <h3>{category}</h3>
                 <div>
                   {items.map((skill) => (
-                    <span key={skill}>{skill}</span>
+                    <Badge key={skill}>{skill}</Badge>
                   ))}
                 </div>
-              </article>
+              </Card>
             ))}
           </div>
         </section>
@@ -429,13 +300,13 @@ function App() {
         <section id="experience" className="content-section reveal-on-scroll">
           <SectionHeader
             eyebrow="Experience"
-            title="Current and prior platform work."
-            text="A concise timeline of the teams, platforms, and operational work behind the profile."
+            title="Current  and prior platform work."
+            text="A concise timeline of the teams, platforms and operational work behind the profile."
             icon={Briefcase}
           />
           <div className="timeline">
             {experience.map((company) => (
-              <article key={company.company} className="timeline-company-card">
+              <Card key={company.company} className="timeline-company-card">
                 <div className="timeline-company-head">
                   <div>
                     <h3>{company.company}</h3>
@@ -459,7 +330,7 @@ function App() {
                     </ul>
                   </div>
                 ))}
-              </article>
+              </Card>
             ))}
           </div>
         </section>
@@ -469,25 +340,25 @@ function App() {
             <SectionHeader
               eyebrow="Intellectual Curiosity"
               title="Rabbit Holes & Beyond the Terminal."
-              text="Current explorations in Agentic AI, FinOps, and Value Investing."
+              text="Current explorations in Agentic AI, FinOps and Value Investing."
               icon={Terminal}
             />
           </div>
           <div className="lab-list">
             {labProjects.map((project) => (
-              <article key={project.title} className="lab-card">
+              <Card key={project.title} className="lab-card">
                 <div>
                   <span>{project.status}</span>
                   <h3>{project.title}</h3>
                 </div>
                 <p>{project.text}</p>
-              </article>
+              </Card>
             ))}
           </div>
         </section>
 
         <section className="content-section credential-section reveal-on-scroll">
-          <div className="credential-card">
+          <Card className="credential-card" as="div">
             <GraduationCap aria-hidden="true" />
             <div>
               <span>Education</span>
@@ -497,15 +368,15 @@ function App() {
                 {education[0]?.details}
               </p>
             </div>
-          </div>
-          <div className="credential-card certification-card">
+          </Card>
+          <Card className="credential-card certification-card" as="div">
             <Award aria-hidden="true" />
             <div>
               <span>Certifications</span>
-              <h2>observability, and Kubernetes fundamentals.</h2>
+              <h2>AWS, Datadog and Kubernetes fundamentals.</h2>
               <div className="cert-list">
                 {certificationShowcase.map((cert) => (
-                  <article key={cert.title} className="cert-item">
+                  <Card key={cert.title} className="cert-item">
                     <div>
                       <strong>{cert.title}</strong>
                       <p>
@@ -522,18 +393,18 @@ function App() {
                       View
                     </a>
                     <small>{cert.proof}</small>
-                  </article>
+                  </Card>
                 ))}
               </div>
             </div>
-          </div>
+          </Card>
         </section>
 
-        <section className="contact-section reveal-on-scroll" aria-label="Contact">
+        <Card className="contact-section reveal-on-scroll" aria-label="Contact" as="section" hasShadow>
           <div>
             <span className="section-kicker">
               <BadgeCheck aria-hidden="true" />
-              Open to SRE, platform, and AI infrastructure conversations
+              Open to SRE, platform and AI infrastructure conversations
             </span>
             <h2>
               Looking for platform ownership with clear trade-off thinking?
@@ -541,12 +412,8 @@ function App() {
           </div>
           <div className="contact-actions">
             <a href={links.linkedin} target="_blank" rel="noreferrer">
-              <Mail aria-hidden="true" />
+              <LinkedinIcon />
               Start on LinkedIn
-            </a>
-            <a href={links.github} target="_blank" rel="noreferrer">
-              <Globe aria-hidden="true" />
-              Review GitHub
             </a>
             <a
               href="/Pranav_Bansal_SRE_Resume.pdf"
@@ -557,7 +424,7 @@ function App() {
               Resume PDF
             </a>
           </div>
-        </section>
+        </Card>
       </main>
 
       <footer className="site-footer">

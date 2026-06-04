@@ -7,10 +7,12 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const MARKDOWN_PATH = path.resolve(
-  __dirname,
-  "../../wiki/analyses/pranav-sre-resume-2026.md",
-);
+const POSSIBLE_MARKDOWN_PATHS = [
+  path.resolve(__dirname, "../../wiki/analyses/pranav-sre-resume-2026.md"),
+  path.resolve(__dirname, "../../../../../../wiki/analyses/pranav-sre-resume-2026.md")
+];
+
+const MARKDOWN_PATH = POSSIBLE_MARKDOWN_PATHS.find(p => fs.existsSync(p)) || POSSIBLE_MARKDOWN_PATHS[0];
 const OUTPUT_DIR = path.resolve(__dirname, "../src/data");
 const OUTPUT_PATH = path.join(OUTPUT_DIR, "resumeData.json");
 const optionalSync = process.argv.includes("--optional");
