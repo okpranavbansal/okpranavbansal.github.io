@@ -1,0 +1,171 @@
+.boot-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(94, 234, 212, 0.13), transparent 24rem),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    var(--bg);
+  background-size: auto, 28px 28px, 28px 28px, auto;
+  animation: bootExit 420ms ease 1.38s both;
+}
+
+.boot-card {
+  width: min(460px, 100%);
+  padding: 24px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.boot-mark {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 18px;
+  border: 1px solid rgba(94, 234, 212, 0.42);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(94, 234, 212, 0.18), rgba(248, 199, 109, 0.08)),
+    rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.18rem;
+  font-weight: 900;
+  animation: bootPulse 900ms ease-in-out infinite alternate;
+}
+
+.boot-copy {
+  text-align: center;
+}
+
+.boot-copy span,
+.boot-steps span {
+  color: var(--soft);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.boot-copy strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--text);
+  font-size: clamp(1.5rem, 8vw, 2.2rem);
+  line-height: 1;
+}
+
+.boot-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+  margin: 24px 0;
+}
+
+.boot-grid span {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(94, 234, 212, 0.04);
+  animation: bootTile 900ms ease-in-out infinite;
+  animation-delay: calc(var(--tile, 0) * 40ms);
+}
+
+.boot-grid span:nth-child(2n) {
+  --tile: 2;
+}
+
+.boot-grid span:nth-child(3n) {
+  --tile: 4;
+}
+
+.boot-grid span:nth-child(5n) {
+  --tile: 6;
+}
+
+.boot-steps {
+  display: grid;
+  gap: 8px;
+}
+
+.boot-steps span {
+  opacity: 0;
+  animation: bootStep 900ms ease forwards;
+  animation-delay: calc(var(--step) * 180ms);
+}
+
+.boot-progress {
+  height: 6px;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--panel-soft);
+}
+
+.boot-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--green), var(--amber));
+  animation: bootLoad 1.35s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+@keyframes bootLoad {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes bootStep {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bootTile {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+    border-color: rgba(94, 234, 212, 0.38);
+  }
+}
+
+@keyframes bootPulse {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-3px) scale(1.03);
+  }
+}
+
+@keyframes bootExit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-loader {
+    animation-delay: 0.2s;
+  }
+}

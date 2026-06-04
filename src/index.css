@@ -36,6 +36,18 @@
   --red: #fb7185;
   --radius: 8px;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+
+  /* Spacing Scale Tokens */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  --space-5xl: 48px;
+  --space-6xl: 64px;
 }
 
 :root[data-theme='light'] {
@@ -126,3 +138,27 @@ svg {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Shimmer Text Effect */
+.text-gradient-shimmer {
+  background: linear-gradient(
+    to right,
+    var(--muted) 20%,
+    var(--text) 40%,
+    var(--text) 60%,
+    var(--muted) 80%
+  );
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
