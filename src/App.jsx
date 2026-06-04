@@ -6,10 +6,8 @@ import {
   CodeXml,
   Download,
   ExternalLink,
-  Globe,
   GraduationCap,
   Layers,
-  Mail,
   Moon,
   Sparkles,
   Sun,
@@ -300,7 +298,7 @@ function App() {
         <section id="experience" className="content-section reveal-on-scroll">
           <SectionHeader
             eyebrow="Experience"
-            title="Current  and prior platform work."
+            title="Current and prior platform work."
             text="A concise timeline of the teams, platforms and operational work behind the profile."
             icon={Briefcase}
           />
