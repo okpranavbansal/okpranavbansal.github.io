@@ -101,19 +101,19 @@ export const caseStudies = [
 
 export const labProjects = [
   {
-    title: "Agentic AI Mesh",
-    status: "Rabbit Hole",
-    text: "Orchestrating multi-agent runtimes and context engineering.",
+    title: 'AWS to GCP Migration Playbook',
+    status: 'Documentation system',
+    text: 'A practical guide for ECS to GKE workload movement, IAM to Workload Identity mapping, and VPC/network rebuild decisions.',
   },
   {
-    title: "FinOps & Cost Optimization",
-    status: "Rabbit Hole",
-    text: "Building scalable patterns that are cost-aware by design.",
+    title: 'Real-time Analytics Hackathon',
+    status: 'Runner Up, 2025',
+    text: 'Built a Kafka, Apache Pinot, and Superset analytics platform under hackathon constraints.',
   },
   {
-    title: "Value Investing",
-    status: "Rabbit Hole",
-    text: "Applying Charlie Munger's mental models to both system design and personal finance.",
+    title: 'Gemma 4 on Cloud Run',
+    status: 'Serverless AI inference',
+    text: 'Hosted the Gemma 4 LLM on Google Cloud Run using attached GPUs, decoupled GCS storage, and vLLM for high-throughput serving.',
   },
 ];
 
