@@ -41,9 +41,9 @@ const LinkedinIcon = ({ size = 18, ...props }) => (
 );
 
 const proofStats = [
-  { value: '28+', label: 'AI services migrated', detail: 'ECS Fargate to GKE' },
+  { value: 'multi-service', label: 'AI services migrated', detail: 'ECS Fargate to GKE' },
   { value: '40%', label: 'Deployment toil reduced', detail: 'GitOps + KSOPS flow' },
-  { value: '50-60%', label: 'AWS spend reduced', detail: 'Spot + RDS tuning' },
+  { value: '50-60%', label: 'AWS/ECS infrastructure spend reduced', detail: 'Spot + RDS tuning' },
   { value: '9M+', label: 'MAU platform exposure', detail: 'ASTRA / OLX Indonesia' },
 ];
 
@@ -76,14 +76,14 @@ const caseStudies = [
     type: 'Migration',
     title: 'AWS to GCP control-plane migration',
     summary:
-      'Led the platform path from ECS Fargate to GKE for a 28+ microservice agentic AI platform, mapping compute, identity, networking, and service exposure into a cleaner GCP runtime.',
+      'Led the platform path from ECS Fargate to GKE for a multi-service agentic AI platform, mapping compute, identity, networking, and service exposure into a cleaner GCP runtime.',
     points: ['ECS Fargate to GKE', 'Workload Identity mapping', 'Gateway API + HTTPRoutes', 'Cloud Armor edge policy'],
     icon: Network,
   },
   {
     number: '02',
     type: 'Delivery',
-    title: 'Self-healing GitOps and secrets flow',
+    title: 'Agentic Infrastructure GitOps and secrets flow',
     summary:
       'Built a repeatable deployment model with Argo CD App of Apps and KSOPS sidecars so teams could ship with encrypted secrets and less hand-held release work.',
     points: ['Argo CD App of Apps', 'SOPS / KSOPS decryption', 'Kustomize overlays', '40% toil reduction'],
@@ -585,7 +585,7 @@ function App() {
                     </div>
                     <a href={cert.href} target="_blank" rel="noreferrer" title={`View ${cert.title} on LinkedIn`}>
                       <ExternalLink aria-hidden="true" />
-                      Verify
+                      View
                     </a>
                     <small>{cert.proof}</small>
                   </article>
@@ -599,7 +599,7 @@ function App() {
           <div>
             <span className="section-kicker">
               <BadgeCheck aria-hidden="true" />
-              Available for serious platform conversations
+              Available for open SRE / platform / AI infrastructure conversations
             </span>
             <h2>Need someone who can own the platform layer and explain the trade-offs?</h2>
           </div>

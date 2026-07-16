@@ -1,6 +1,6 @@
 {
   "name": "Pranav Bansal",
-  "title": "Site Reliability & Platform Engineer",
+  "title": "Site Reliability Engineer",
   "location": "Gurgaon, India / Remote",
   "links": {
     "linkedin": "https://www.linkedin.com/in/okpranavbansal/",
@@ -40,10 +40,10 @@
       "IAM"
     ],
     "AI/ML Ops": [
-      "Vertex AI (Model Garden, Agent Engine)",
+      "GCP Vertex AI (Model Garden, Agent Engine)",
       "Amazon Bedrock",
-      "Agentic Orchestration",
-      "Eval-Driven Quality Gates"
+      "Langfuse",
+      "LLM Observability"
     ],
     "Containers & CI/CD": [
       "Kubernetes (GKE, EKS)",
@@ -79,18 +79,29 @@
   },
   "experience": [
     {
-      "company": "Wyzard.ai (Nexura Technologies)",
+      "company": "wyzard.ai (Nexura)",
       "period": "Nov 2025 – Present",
-      "context": "28+ microservices, Agentic AI Platform",
+      "context": "Agentic AI Platform",
       "roles": [
         {
-          "title": "Senior AI Platform Engineer",
-          "subtitle": "promoted 1 Apr 2026 from Engineer",
+          "title": "Continuous tenure since Jan 2024 (entity migration from Roundcircle Technologies)",
+          "subtitle": "",
+          "bullets": []
+        },
+        {
+          "title": "Senior AI Platform Engineer (Startup; ~35-person team)",
+          "subtitle": "Apr 2026 – Present",
           "bullets": [
-            "Partnered directly with founders/CXOs to lead end-to-end AWS → GCP migration (ECS Fargate → GKE), building scalable AI model-serving infrastructure for 28+ microservices.",
-            "Built self-healing GitOps delivery via ArgoCD (App of Apps pattern) with KSOPS sidecars for on-the-fly SOPS secret decryption, reducing deployment toil by 40%.",
-            "Secured Kubernetes boundary using GCP Gateway API, HTTPRoutes, and Cloud Armor; enforced least-privilege via GKE Workload Identity Federation.",
-            "Engineered eval-driven quality gates for AI workflows on Vertex AI (Model Garden, Agent Engine) and observability dashboards using Datadog and Langfuse."
+            "Executing AWS to GCP migration for Wyzard's AI platform, standardizing GKE, Cloud Armor, and ArgoCD delivery.",
+            "Engineered automated quality gates for AI model outputs on GCP Vertex AI (Model Garden, Agent Engine). Designed end-to-end trace observability and health dashboards with Datadog and Langfuse to monitor hallucination rates and latency."
+          ]
+        },
+        {
+          "title": "Engineer (DevOps / SRE)",
+          "subtitle": "Nov 2025 – Mar 2026",
+          "bullets": [
+            "Acted as primary platform engineer. Co-architected the ECS Fargate to GKE migration strategy with founders to support scalable AI model-serving.",
+            "Integrated Mozilla SOPS and Kustomize (KSOPS) to automate secrets decryption at deployment. Established ArgoCD GitOps pipelines, eliminating 40% of manual release steps."
           ]
         }
       ]
@@ -104,20 +115,19 @@
           "title": "Engineer (DevOps / SRE)",
           "subtitle": "Jun 2025 – Oct 2025",
           "bullets": [
-            "**ASTRA (OLX Indonesia):** Supported team-led New Relic → Datadog & Grafana (Loki) observability migration for 80+ microservices (9M+ MAU), contributing service onboarding and log pipeline validation.",
-            "**ASTRA (OLX Indonesia):** Refactored Terraform code for OLX Indonesia apps, improving IaC maintainability, module readability, and environment consistency.",
+            "**ASTRA (OLX Indonesia):** Supported New Relic to Datadog/Loki observability migration for 80+ microservices (9M+ MAU). Upgraded core Terraform.",
             "**Wyzard.ai:** Built Jenkins CI/CD pipelines with auto-scaling ECS runners and git-crypt/S3-backed ECS secrets storage; deployed LGTM observability, reducing deployment failures by 30%.",
-            "**Wyzard.ai:** Executed seamless AWS cross-account migrations during entity spin-off, re-architecting IAM trust policies and VPC peering with zero downtime.",
-            "**Wyzard.ai:** Reduced AWS spend by 50–60% via Spot strategy and RDS tuning; managed production databases (DynamoDB, MongoDB Atlas) and analytics engines (ClickHouse, Neo4j)."
+            "**Wyzard.ai:** Managed AWS cross-account migrations during corporate entity spin-off. Re-architected IAM trust policies, transit gateways, and VPC peering to ensure zero production downtime.",
+            "**Wyzard.ai:** Reduced AWS/ECS infrastructure spend by 50–60% via Spot instance strategies and deep RDS tuning; administered complex production data stores including DynamoDB, MongoDB Atlas, ClickHouse, and Neo4j."
           ]
         },
         {
           "title": "Engineer Intern",
           "subtitle": "Converted to Full-Time · Jan 2024 – May 2025",
           "bullets": [
-            "Provisioned baseline cloud environments across dev, staging, and production using Terraform, establishing IaC standards that eliminated environment parity drift.",
-            "Containerized 5+ monolithic legacy applications with Docker, integrating them into automated GitLab CI pipelines and cutting release cycles from days to hours.",
-            "Authored 10+ runbooks and SOPs for incident response, reducing new-hire on-call ramp-up time and onboarding toil."
+            "Provisioned baseline dev/staging/prod environments via Terraform.",
+            "Containerized 5+ legacy applications with Docker and integrated GitLab CI pipelines, reducing release cycles from days to hours.",
+            "Authored 10+ incident response runbooks to reduce onboarding toil."
           ]
         }
       ]
