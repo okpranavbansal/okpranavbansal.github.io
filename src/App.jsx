@@ -133,7 +133,7 @@ function App() {
         </nav>
         <div className="top-actions">
           <a
-            href="/Pranav_Bansal_SRE_Resume.pdf"
+            href="/resumes/new/Pranav_Bansal_SRE_Resume.pdf"
             target="_blank"
             rel="noreferrer"
             aria-label="Open resume PDF"
@@ -202,7 +202,7 @@ function App() {
               </a>
               <a
                 className="secondary-action"
-                href="/Pranav_Bansal_SRE_Resume.pdf"
+                href="/resumes/new/Pranav_Bansal_SRE_Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -414,7 +414,7 @@ function App() {
               Start on LinkedIn
             </a>
             <a
-              href="/Pranav_Bansal_SRE_Resume.pdf"
+              href="/resumes/new/Pranav_Bansal_SRE_Resume.pdf"
               target="_blank"
               rel="noreferrer"
             >
