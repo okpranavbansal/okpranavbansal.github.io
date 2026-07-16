@@ -135,6 +135,10 @@
   ],
   "projects": [
     {
+      "title": "Gemma 4 Serverless Inference",
+      "description": "Hosted the Gemma 4 multimodal LLM on Google Cloud Run utilizing attached GPUs, implementing decoupled Cloud Storage FUSE weights and vLLM inference engine for scalable, serverless AI serving."
+    },
+    {
       "title": "AWS → GCP Migration Playbook",
       "description": "Authored a comprehensive migration guide covering ECS→GKE workload migration, IAM-to-Workload-Identity mapping, and VPC networking rebuild."
     },

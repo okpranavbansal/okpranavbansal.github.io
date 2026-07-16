@@ -112,9 +112,9 @@ const labProjects = [
     text: 'Built a Kafka, Apache Pinot, and Superset analytics platform under hackathon constraints.',
   },
   {
-    title: 'Infra Projects Roadmap',
-    status: 'Next public proof',
-    text: 'Planned public projects include a Go K8s health checker, observability stack, Terraform environments, and a Backstage developer portal.',
+    title: 'Gemma 4 on Cloud Run',
+    status: 'Serverless AI inference',
+    text: 'Hosted the Gemma 4 LLM on Google Cloud Run using attached GPUs, decoupled GCS storage, and vLLM for high-throughput serving.',
   },
 ];
 
