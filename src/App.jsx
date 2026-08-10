@@ -184,11 +184,7 @@ function App() {
             </div>
             <h1 className="text-gradient-shimmer">{name}</h1>
             <p className="hero-title">
-              A "Curious Builder" focused on AWS-to-GCP migration, GitOps delivery,
-              observability and AI infrastructure reliability.
-            </p>
-            <p className="hero-summary">
-              I am a T-shaped engineer operating the platform layer behind AI products. Beyond the terminal, I explore agentic AI and FinOps and apply Munger's mental models to system design and value investing.
+              I build and operate the platform layer behind AI products: Kubernetes runtime, GitOps delivery, secure identity boundaries, useful observability and cost-aware cloud operations.
             </p>
             <div className="hero-actions">
               <a
