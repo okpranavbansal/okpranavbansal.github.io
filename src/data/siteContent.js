@@ -26,8 +26,13 @@ export const proofStats = [
   },
   {
     value: "9M+",
-    label: "MAU platform exposure",
+    label: "MAU infrastructure exposure",
     detail: "ASTRA / OLX Indonesia",
+  },
+  {
+    value: "99.99%",
+    label: "Chatbot Uptime",
+    detail: "10k+ MAU (XMPP/OpenAI)",
   },
 ];
 
@@ -45,12 +50,12 @@ export const operatingSignals = [
   {
     icon: Activity,
     title: "Reliability loops",
-    text: "SLO thinking, production runbooks, observability migrations, dashboards, and incident-ready operations.",
+    text: "SLO thinking, Datadog/Grafana observability, proactive load testing, and maintaining 99.99% uptime for scaled chat infrastructure.",
   },
   {
     icon: ShieldCheck,
-    title: "Secure platform edges",
-    text: "Workload Identity Federation, Cloud Armor, Gateway API, IAM boundaries, and least-privilege defaults.",
+    title: "Secure cloud boundaries",
+    text: "Establishing technical readiness for ISO 27001, SOC2, and GDPR compliance through RBAC, network isolation, and least-privilege defaults.",
   },
 ];
 
@@ -58,9 +63,9 @@ export const caseStudies = [
   {
     number: "01",
     type: "Migration",
-    title: "AWS to GCP platform migration",
+    title: "AWS to GCP cloud migration",
     summary:
-      "Led Wyzard’s AWS-to-GCP platform migration path from ECS Fargate toward GKE, mapping compute, identity, networking, gateway policy, delivery, and service exposure into a cleaner Kubernetes runtime.",
+      "Led Wyzard's AWS-to-GCP migration path from ECS Fargate toward GKE, mapping compute, identity, networking, gateway policy, GitOps delivery and service exposure into a cleaner Kubernetes runtime.",
     points: [
       "ECS Fargate to GKE",
       "Workload Identity mapping",
@@ -88,7 +93,7 @@ export const caseStudies = [
     type: "Operations",
     title: "Observability, cost, and data operations",
     summary:
-      "Worked across telemetry, cost, and data operations: Datadog/Grafana/Loki migrations, AWS Spot and RDS tuning, and operational stores used by product and analytics teams.",
+      "Worked across telemetry, cost and data operations: Datadog/Grafana/Loki migrations, AWS Spot and RDS tuning and operational stores such as MongoDB Atlas, DynamoDB, ClickHouse and Neo4j.",
     points: [
       "Datadog / Grafana / Loki",
       "Spot strategy + RDS tuning",
@@ -115,6 +120,11 @@ export const labProjects = [
     status: 'Serverless AI inference',
     text: 'Hosted the Gemma 4 LLM on Google Cloud Run using attached GPUs, decoupled GCS storage, and vLLM for high-throughput serving.',
   },
+  {
+    title: 'Gram Text Editor',
+    status: 'Systems Programming (C)',
+    text: 'A terminal-based text editor built from scratch in C, managing raw terminal I/O, POSIX termios, and low-level memory allocation.',
+  },
 ];
 
 export const faq = [
@@ -124,11 +134,11 @@ export const faq = [
   },
   {
     q: "What is the strongest proof signal?",
-    a: "AWS to GCP migration work for an agentic AI platform, plus GitOps, observability, and cost outcomes.",
+    a: "Executing zero-downtime infrastructure cutovers at scale (Wyzard.ai), and driving measurable outcomes across reliability, security, and cloud cost.",
   },
   {
     q: "What stack is interview-ready?",
-    a: "Kubernetes, GKE, AWS, GCP, Terraform, Argo CD, SOPS/KSOPS, Jenkins, Datadog, Grafana, Loki, Python, Bash, and Go fundamentals.",
+    a: "Kubernetes, GKE, AWS, GCP, Terraform, Argo CD, SOPS/KSOPS, Datadog, Grafana, Vertex AI, OpenAI APIs, Python, Bash, and Go.",
   },
   {
     q: "What makes the profile different from generic DevOps?",

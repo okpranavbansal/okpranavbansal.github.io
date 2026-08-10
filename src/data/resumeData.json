@@ -41,9 +41,7 @@
     ],
     "AI/ML Ops": [
       "GCP Vertex AI (Model Garden, Agent Engine)",
-      "Amazon Bedrock",
-      "Langfuse",
-      "LLM Observability"
+      "Amazon Bedrock"
     ],
     "Containers & CI/CD": [
       "Kubernetes (GKE, EKS)",
@@ -61,12 +59,10 @@
       "Loki",
       "Tempo",
       "Datadog",
-      "Langfuse",
       "New Relic"
     ],
     "Languages & Data": [
       "Python",
-      "Go",
       "Bash",
       "Java",
       "PostgreSQL",
@@ -95,7 +91,7 @@
             "Led cross-functional AWS → GCP migration for Wyzard's AI platform, executing zero-downtime cutovers for GKE workloads, Workload Identity, and ArgoCD GitOps pipelines.",
             "Drove infrastructure security and compliance, establishing technical readiness for ISO 27001 certification through RBAC, network isolation, and encryption.",
             "Operated scalable chat infrastructure (XMPP, OpenAI APIs) supporting a **10k+ MAU** chatbot, maintaining 99.99% uptime via proactive load testing and Linux resource tuning.",
-            "Engineered automated quality gates for AI model outputs on GCP Vertex AI, architecting real-time LLM observability (Datadog, Langfuse) to improve reliability."
+            "Engineered automated quality gates for AI model outputs on GCP Vertex AI, integrating standard Datadog telemetry to monitor model reliability and API latency."
           ]
         },
         {
@@ -117,19 +113,18 @@
           "title": "Engineer (DevOps / SRE)",
           "subtitle": "Jun 2025 – Oct 2025",
           "bullets": [
-            "**ASTRA (OLX Indonesia):** Supported New Relic to Datadog/Loki observability migration for 80+ microservices (9M+ MAU). Upgraded core Terraform.",
-            "**Wyzard.ai:** Built Jenkins CI/CD pipelines with auto-scaling ECS runners and git-crypt/S3-backed ECS secrets storage; deployed LGTM observability, reducing deployment failures by 30%.",
-            "**Wyzard.ai:** Managed AWS cross-account migrations during corporate entity spin-off. Re-architected IAM trust policies, transit gateways, and VPC peering to ensure zero production downtime.",
-            "**Wyzard.ai:** Reduced AWS/ECS infrastructure spend by 50–60% via Spot instance strategies and deep RDS tuning; administered complex production data stores including DynamoDB, MongoDB Atlas, ClickHouse, and Neo4j."
+            "**ASTRA (OLX Indonesia):** Supported observability migration to Datadog/Loki for 80+ microservices serving **9M+ MAU**, optimizing alerting thresholds to reduce noisy alerts by 25%.",
+            "**Wyzard.ai:** Built CI/CD pipelines with auto-scaling runners and deployed the LGTM observability stack, reducing deployment failures by 30% and significantly improving MTTR.",
+            "**Wyzard.ai:** Executed seamless AWS cross-account migrations, re-architecting IAM trust policies, VPC peering, and underlying network routing with zero production downtime.",
+            "**Wyzard.ai:** Reduced AWS infrastructure spend by 50–60% via Spot instance strategies and Linux-level RDS tuning; managed highly-available databases with active backup strategies."
           ]
         },
         {
           "title": "Engineer Intern",
           "subtitle": "Converted to Full-Time · Jan 2024 – May 2025",
           "bullets": [
-            "Provisioned baseline dev/staging/prod environments via Terraform.",
-            "Containerized 5+ legacy applications with Docker and integrated GitLab CI pipelines, reducing release cycles from days to hours.",
-            "Authored 10+ incident response runbooks to reduce onboarding toil."
+            "Developed custom Python automation scripts alongside Terraform IaC, eliminating environment parity drift across dev, staging, and production.",
+            "Containerized 5+ legacy monolithic applications with Docker by resolving deep Linux dependency conflicts, cutting release cycles from days to hours."
           ]
         }
       ]

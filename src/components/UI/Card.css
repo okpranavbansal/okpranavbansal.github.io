@@ -1,16 +1,35 @@
 .card {
-  border: 1px solid var(--line);
+  position: relative;
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
-  background: var(--panel);
-  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), border-color 300ms ease, box-shadow 300ms ease;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 400ms cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              background 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+/* Subtle inner glow for glass cards */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  pointer-events: none;
 }
 
 .card--shadow {
-  box-shadow: var(--shadow);
+  box-shadow: var(--glass-shadow);
 }
 
 .card:hover {
-  transform: translateY(-2px) scale(1.01);
-  border-color: rgba(94, 234, 212, 0.3);
-  box-shadow: 0 16px 40px rgba(94, 234, 212, 0.08), 0 0 20px rgba(94, 234, 212, 0.04);
+  transform: translateY(-4px) scale(1.005);
+  border-color: var(--glass-border-hover);
+  background: var(--panel-hover);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 
+              0 0 30px var(--accent-cyan-glow);
 }
