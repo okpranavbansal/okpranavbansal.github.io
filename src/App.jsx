@@ -59,11 +59,16 @@ import {
 } from "./data/siteContent.js";
 
 function parseBold(text) {
-  const match = text.match(/^\*\*(.*?)\*\*\s*:?\s*(.*)/s);
-  if (!match) return text;
+  if (!text.includes('**')) return text;
+  const parts = text.split(/(\*\*.*?\*\*)/g);
   return (
     <>
-      <strong>{match[1]}:</strong> {match[2]}
+      {parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={i}>{part.slice(2, -2)}</strong>;
+        }
+        return part;
+      })}
     </>
   );
 }
