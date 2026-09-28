@@ -151,6 +151,7 @@ export const navItems = [
   ["Stack", "#stack"],
   ["Experience", "#experience"],
   ["Curiosity", "#lab"],
+  ["Education", "#education"],
 ];
 
 export const bootLogLines = [

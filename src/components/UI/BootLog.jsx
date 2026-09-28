@@ -44,6 +44,7 @@ export function BootLog({ name, onDone }) {
   const [nameChars, setNameChars] = useState(0);
   const [exiting, setExiting] = useState(false);
   const finishedRef = useRef(false);
+  const skipRef = useRef(() => {});
 
   useEffect(() => {
     finishedRef.current = false;
@@ -61,6 +62,7 @@ export function BootLog({ name, onDone }) {
       doneTimeoutId = window.setTimeout(onDone, EXIT_MS);
     };
 
+    skipRef.current = beginExit;
     const skip = () => beginExit();
 
     const tick = (now) => {
@@ -85,6 +87,7 @@ export function BootLog({ name, onDone }) {
     rafId = window.requestAnimationFrame(tick);
 
     return () => {
+      skipRef.current = () => {};
       window.cancelAnimationFrame(rafId);
       window.clearTimeout(doneTimeoutId);
       window.removeEventListener("keydown", skip);
@@ -97,13 +100,11 @@ export function BootLog({ name, onDone }) {
     nameChars > 0;
 
   return (
-    <div
-      className={`boot-log${exiting ? " boot-log--exit" : ""}`}
-      role="status"
-      aria-live="polite"
-    >
-      <span className="sr-only">Loading {displayName}&apos;s portfolio</span>
-      <div className="boot-log-card">
+    <div className={`boot-log${exiting ? " boot-log--exit" : ""}`}>
+      <div className="sr-only" role="status" aria-live="polite">
+        Loading {displayName}&apos;s portfolio
+      </div>
+      <div className="boot-log-card" aria-hidden="true">
         <div className="boot-log-chrome" aria-hidden="true">
           <div className="boot-log-dots">
             <span />
@@ -129,9 +130,13 @@ export function BootLog({ name, onDone }) {
           )}
         </div>
       </div>
-      <p className="boot-log-skip-hint" aria-hidden="true">
-        press any key to skip
-      </p>
+      <button
+        type="button"
+        className="boot-log-skip"
+        onClick={() => skipRef.current()}
+      >
+        Skip
+      </button>
     </div>
   );
 }

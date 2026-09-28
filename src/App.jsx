@@ -4,8 +4,8 @@ import {
   BadgeCheck,
   Briefcase,
   CodeXml,
-  Download,
   ExternalLink,
+  FileText,
   GraduationCap,
   Layers,
   Moon,
@@ -209,10 +209,10 @@ function App() {
             href={RESUME_PDF}
             target="_blank"
             rel="noreferrer"
-            aria-label="Open resume PDF"
-            title="Open resume PDF"
+            aria-label="View resume"
+            title="View resume"
           >
-            <Download aria-hidden="true" />
+            <FileText aria-hidden="true" />
           </a>
           <button
             className="theme-toggle"
@@ -262,9 +262,10 @@ function App() {
           <Card className="hero-copy card--static" as="div" hasShadow>
             <div className="availability-pill">
               <span className="status-dot" />
-              <span>Gurugram / Remote · AI platform infrastructure</span>
+              <span>Open to SRE & platform roles · Gurugram / Remote</span>
             </div>
             <h1 className="hero-name">{name}</h1>
+            <p className="hero-role">Senior AI Platform Engineer</p>
             <p className="hero-title">
               I build and operate the platform layer behind AI products:
               Kubernetes runtime, GitOps delivery, secure identity boundaries,
@@ -277,8 +278,8 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Download aria-hidden="true" />
-                Resume PDF
+                <FileText aria-hidden="true" />
+                View resume
               </a>
               <a
                 className="secondary-action"
@@ -353,7 +354,7 @@ function App() {
           />
           <div className="case-grid">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="case-card">
+              <Card key={study.title} className="case-card card--static">
                 <div className="case-top">
                   <span>{study.number}</span>
                   <study.icon aria-hidden="true" />
@@ -382,7 +383,7 @@ function App() {
           </div>
           <div className="stack-board">
             {Object.entries(skills).map(([category, items]) => (
-              <Card key={category} className="stack-group">
+              <Card key={category} className="stack-group card--static">
                 <h3>{category}</h3>
                 <div>
                   {items.map((skill) => (
@@ -446,7 +447,7 @@ function App() {
           </div>
           <div className="lab-list">
             {labProjects.map((project) => (
-              <Card key={project.title} className="lab-card">
+              <Card key={project.title} className="lab-card card--static">
                 <div>
                   <span>{project.status}</span>
                   <h3>{project.title}</h3>
@@ -512,7 +513,7 @@ function App() {
               <BadgeCheck aria-hidden="true" />
               Open to SRE, platform and AI infrastructure conversations
             </span>
-            <h2>Hiring for SRE or platform roles? Let's talk.</h2>
+            <h2>Hiring for SRE or platform roles? Let’s talk.</h2>
           </div>
           <div className="contact-actions">
             <a
@@ -521,8 +522,8 @@ function App() {
               target="_blank"
               rel="noreferrer"
             >
-              <Download aria-hidden="true" />
-              Resume PDF
+              <FileText aria-hidden="true" />
+              View resume
             </a>
             <a className="secondary-action" href="mailto:okpranavbansal@gmail.com">
               Email

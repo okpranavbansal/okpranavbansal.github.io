@@ -34,7 +34,7 @@ export function CommandSearch() {
           autoComplete="off"
         />
       </label>
-      <div className="answer-stack">
+      <div className="answer-stack" aria-live="polite">
         {results.length ? (
           results.map((item) => (
             <article key={item.q} className="answer-card">
