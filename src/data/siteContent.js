@@ -5,7 +5,6 @@ import {
   Cloud,
   Network,
   Database,
-  Server,
 } from "lucide-react";
 
 export const proofStats = [
@@ -21,12 +20,12 @@ export const proofStats = [
   },
   {
     value: "40%",
-    label: "Deployment toil reduced",
+    label: "Fewer manual deploy steps",
     detail: "GitOps + KSOPS flow",
   },
   {
     value: "50-60%",
-    label: "AWS/ECS cost reduced",
+    label: "AWS spend reduced (2025)",
     detail: "Spot + RDS tuning",
   },
   {
@@ -50,17 +49,17 @@ export const operatingSignals = [
   {
     icon: GitBranch,
     title: "GitOps delivery",
-    text: "Argo CD App of Apps, environment parity, SOPS/KSOPS secret handling, and lower deployment toil.",
+    text: "Argo CD and encrypted secrets (SOPS/KSOPS), so releases need fewer manual steps.",
   },
   {
     icon: Activity,
     title: "Reliability & AI Ops",
-    text: "SLO thinking, Datadog LLM observability, proactive load testing, and maintaining 99.99% uptime for agentic AI workloads and chat infrastructure.",
+    text: "Datadog and Langfuse for LLM observability, and 99.99% uptime for the chat infrastructure (10k+ MAU).",
   },
   {
     icon: ShieldCheck,
     title: "Secure cloud boundaries",
-    text: "Establishing technical readiness for ISO 27001, SOC2, and GDPR compliance through RBAC, network isolation, and least-privilege defaults.",
+    text: "Establishing ISO 27001 technical readiness and SOC2/GDPR-aligned controls through RBAC, network isolation, and least-privilege defaults.",
   },
 ];
 
@@ -70,7 +69,7 @@ export const caseStudies = [
     type: "Migration",
     title: "AWS to GCP cloud migration",
     summary:
-      "Led Wyzard's AWS-to-GCP migration path from ECS Fargate toward GKE, mapping compute, identity, networking, gateway policy, GitOps delivery and service exposure into a cleaner Kubernetes runtime.",
+      "Led Wyzard's AWS-to-GCP migration path from ECS Fargate toward GKE, including an ARM (Graviton) to x86 dependency shift, mapping compute, identity, networking, gateway policy, GitOps delivery and service exposure into a cleaner Kubernetes runtime.",
     points: [
       "ECS Fargate to GKE",
       "Workload Identity mapping",
@@ -89,7 +88,7 @@ export const caseStudies = [
       "Argo CD App of Apps",
       "SOPS / KSOPS decryption",
       "Kustomize overlays",
-      "40% toil reduction",
+      "40% fewer manual deploy steps",
     ],
     icon: GitBranch,
   },
@@ -98,12 +97,12 @@ export const caseStudies = [
     type: "Operations",
     title: "Observability, cost, and data operations",
     summary:
-      "Worked across telemetry, cost and data operations: Datadog/Grafana/Loki migrations, Confluent to GCP MSAK messaging migrations, AWS Spot and RDS tuning, and operational stores such as MongoDB (managed and self-hosted), DynamoDB, ClickHouse, and Neo4j.",
+      "Worked across telemetry, cost and data operations: New Relic to Datadog/Grafana/Loki migrations, Confluent to GCP MSAK messaging cutovers, AWS Spot and RDS tuning, and operational stores such as MongoDB (managed; self-hosted migration in progress), DynamoDB, ClickHouse, and Neo4j.",
     points: [
       "Confluent to GCP MSAK (~88% savings)",
-      "Datadog / Grafana / Loki",
+      "Datadog / Langfuse / Grafana / Loki",
       "Spot strategy + RDS tuning",
-      "Self-Hosted MongoDB + ClickHouse",
+      "MongoDB self-host (in progress) + ClickHouse",
     ],
     icon: Database,
   },
@@ -123,31 +122,26 @@ export const labProjects = [
   {
     title: 'Gemma 4 Serverless GPU Inference',
     status: 'Serverless AI inference',
-    text: 'Engineered a deployment for google/gemma-4-E4B-it on Cloud Run using attached NVIDIA L4 GPUs, Run:ai GCS streamer, and on-the-fly FP8 quantization.',
-  },
-  {
-    title: 'Personal Finance Engineering',
-    status: 'System Design (Ongoing)',
-    text: 'Operationalizing a Buffett/Munger-inspired finance system, tracking credit profiles (CIBIL/Experian), and optimizing reward-stacking credit card strategies.',
+    text: 'Deployed google/gemma-4-E4B-it on Cloud Run with an NVIDIA L4 GPU, a Run:ai GCS streamer, and vLLM FP8 quantization.',
   },
 ];
 
 export const faq = [
   {
     q: "What kind of roles is Pranav targeting?",
-    a: "SRE, Platform Engineering, AI Platform Engineer, Cloud Infrastructure, and leadership-facing platform ownership roles (CEO/CTO trajectory).",
+    a: "SRE, Platform Engineering, AI Platform Engineer, Cloud Infrastructure, and leadership-facing platform ownership roles.",
   },
   {
     q: "What is the strongest proof signal?",
-    a: "Executing zero-downtime infrastructure cutovers at scale (Wyzard.ai), and driving measurable outcomes across reliability, security, and cloud cost.",
+    a: "The biggest measured results are the ~88% messaging-cost cut (Confluent to GCP Kafka) and the zero-downtime AWS to GCP cutover at Wyzard.",
   },
   {
     q: "What stack is interview-ready?",
-    a: "Kubernetes, GKE, Cloud Run, AWS, GCP, Terraform, Argo CD, SOPS, Datadog, MSAK/Kafka, Vertex AI, OpenAI APIs, Python, Bash, and Go.",
+    a: "Kubernetes, GKE, Cloud Run, AWS, GCP, Terraform, Argo CD, SOPS, Datadog, Langfuse, MSAK/Kafka, Vertex AI, OpenAI APIs, Python, and Bash.",
   },
   {
     q: "What makes the profile different from generic DevOps?",
-    a: "I am a 'Curious Builder'. I operate as a T-shaped engineer—deeply technical in SRE/Platform, but broadly curious about AI, product, and value investing.",
+    a: "Deep in SRE and platform work, with a product and AI mindset. The 9M+ MAU figure is ASTRA at Roundcircle, not Wyzard.",
   },
 ];
 
@@ -159,49 +153,12 @@ export const navItems = [
   ["Curiosity", "#lab"],
 ];
 
-export const loaderSteps = [
-  "resolve profile",
-  "map platform proof",
-  "hydrate case studies",
-  "ready",
-];
-
-export const architectureNodes = [
-  {
-    key: "gke",
-    label: "GKE",
-    command: "$ inspect runtime",
-    outcome: "gke/serving",
-    detail: "Kubernetes runtime for migrated ECS Fargate services.",
-    icon: Server,
-  },
-  {
-    key: "argocd",
-    label: "Argo CD",
-    command: "$ inspect delivery",
-    outcome: "gitops/synced",
-    detail:
-      "App of Apps delivery, environment parity, and lower manual release toil.",
-    icon: GitBranch,
-  },
-  {
-    key: "armor",
-    label: "Cloud Armor",
-    command: "$ inspect edge",
-    outcome: "edge/protected",
-    detail:
-      "Gateway API, HTTPRoutes, WAF rules, and least-privilege cloud boundaries.",
-    icon: ShieldCheck,
-  },
-  {
-    key: "datadog",
-    label: "Datadog",
-    command: "$ inspect telemetry",
-    outcome: "signals/live",
-    detail:
-      "Production visibility through dashboards, traces, logs, and AI workflow checks.",
-    icon: Activity,
-  },
+export const bootLogLines = [
+  "Initializing platform...",
+  "Loading modules: kubernetes, terraform, argocd",
+  "kubectl get engineer pranav -n sre",
+  "Status: Running · 1/1 Ready",
+  "Rendering profile...",
 ];
 
 export const certificationShowcase = [
@@ -221,7 +178,7 @@ export const certificationShowcase = [
   },
   {
     title: "Kubernetes for Beginners",
-    issuer: "Kubernetes training",
+    issuer: "Course certificate",
     type: "Container orchestration foundation",
     proof: "Credential details listed on LinkedIn or available on request.",
     href: "https://www.linkedin.com/in/okpranavbansal/details/certifications/",
@@ -231,16 +188,16 @@ export const certificationShowcase = [
 export const migrationsData = [
   {
     id: "aws-gcp",
-    title: "AWS to GCP Orchestration",
+    title: "AWS to GCP",
     subtitle: "ECS Fargate → GKE",
     icon: Cloud,
     from: "AWS ECS Fargate",
     to: "GCP GKE + Workload Identity",
     metrics: [
       { value: "0", label: "Downtime during cutover" },
-      { value: "40%", label: "Deployment Toil Reduction" }
+      { value: "Route 53", label: "Moved to Cloud DNS" }
     ],
-    description: "Led the migration of the Wyzard AI platform from AWS to GCP. Mapped AWS IAM roles to GCP Workload Identity, transitioned from ECS to a Kubernetes runtime (GKE), and enforced GitOps delivery via ArgoCD with zero production downtime."
+    description: "Led the migration of the Wyzard AI platform from AWS to GCP. Mapped AWS IAM roles to GCP Workload Identity, resolved ARM (Graviton) to x86 package dependencies, transitioned from ECS to GKE, and enforced GitOps delivery via ArgoCD with zero production downtime."
   },
   {
     id: "messaging-msak",
@@ -251,21 +208,21 @@ export const migrationsData = [
     to: "GCP Managed Service for Kafka",
     metrics: [
       { value: "88%", label: "Reduction in messaging costs" },
-      { value: "Sub-ms", label: "Latency improvement" }
+      { value: "0", label: "Application code rewrites" }
     ],
-    description: "Orchestrated the migration of the core microservice fleet away from Confluent Cloud to GCP MSAK. Eliminated cross-cloud latency and massive egress charges without requiring application code rewrites."
+    description: "Moved event streaming from Confluent to Google Cloud's managed Kafka. Monthly messaging cost fell by about 88%. The cutover finished inside a 4-hour window, with no lost messages and no application code changes."
   },
   {
     id: "observability-datadog",
     title: "Observability at Scale",
     subtitle: "ASTRA (OLX) Telemetry",
     icon: Activity,
-    from: "Fragmented Logs & APM",
-    to: "Datadog, Grafana & Loki",
+    from: "New Relic APM",
+    to: "Datadog and Grafana Loki",
     metrics: [
-      { value: "9M+", label: "MAU Handled" },
-      { value: "25%", label: "Reduction in noisy alerts" }
+      { value: "Supported", label: "Not the owner of the fleet move" },
+      { value: "25%", label: "Fewer noisy alerts" }
     ],
-    description: "Supported the observability migration for 80+ microservices in ASTRA (OLX Indonesia). Optimized alerting thresholds, rolled out the LGTM stack for Wyzard, and integrated Datadog LLM observability for AI model pipelines."
+    description: "Supported the New Relic to Datadog move for ASTRA (OLX Indonesia): 80+ microservices and 9M+ MAU. Logs went to Grafana Loki. Langfuse is Wyzard-only, for LLM traces."
   }
 ];

@@ -8,8 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const POSSIBLE_MARKDOWN_PATHS = [
-  path.resolve(__dirname, "../../wiki/analyses/pranav-sre-resume-2026.md"),
-  path.resolve(__dirname, "../../../../../../wiki/analyses/pranav-sre-resume-2026.md")
+  path.resolve(__dirname, "../../../wiki/analyses/pranav-sre-resume-2026.md"),
 ];
 
 const MARKDOWN_PATH = POSSIBLE_MARKDOWN_PATHS.find(p => fs.existsSync(p)) || POSSIBLE_MARKDOWN_PATHS[0];

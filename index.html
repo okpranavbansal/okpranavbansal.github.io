@@ -8,15 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Pranav Bansal is a Site Reliability & Platform Engineer focused on AWS-to-GCP migration, GKE, Argo CD GitOps, observability, and AI infrastructure reliability."
+      content="Pranav Bansal is a Senior AI Platform Engineer. He runs Kubernetes, GitOps, and cloud migrations for AI products."
     />
     <meta
       name="keywords"
-      content="Pranav Bansal, Site Reliability Engineer, Platform Engineer, AI Infrastructure, GKE, Kubernetes, Terraform, Argo CD, GCP, AWS, MLOps"
+      content="Pranav Bansal, Site Reliability Engineer, Platform Engineer, AI Infrastructure, GKE, Kubernetes, Terraform, Argo CD, GCP, AWS, MSAK, Kafka, MLOps"
     />
     <meta
       property="og:title"
-      content="Pranav Bansal | SRE & AI Platform Engineer"
+      content="Pranav Bansal | Senior AI Platform Engineer"
     />
     <meta
       property="og:description"
@@ -24,14 +24,27 @@
     />
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://okpranavbansal.github.io" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Pranav Bansal | SRE & AI Platform Engineer" />
+    <link rel="canonical" href="https://okpranavbansal.github.io/" />
+    <meta property="og:image" content="https://okpranavbansal.github.io/favicon.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://okpranavbansal.github.io/favicon.svg" />
+    <meta name="twitter:title" content="Pranav Bansal | Senior AI Platform Engineer" />
     <meta name="twitter:description" content="SRE and platform profile for AWS-to-GCP migration, GitOps delivery, observability, and AI infrastructure reliability." />
     <meta name="theme-color" content="#050608" />
     <script>
       (() => {
-        const storedTheme = localStorage.getItem("theme") || "dark";
-        document.documentElement.dataset.theme = storedTheme;
+        const stored = localStorage.getItem("theme");
+        const theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        document.documentElement.dataset.theme = theme;
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) {
+          meta.setAttribute("content", theme === "light" ? "#f8fafc" : "#050505");
+        }
       })();
     </script>
     <script type="application/ld+json">
@@ -42,11 +55,13 @@
           "@type": "Person",
           "name": "Pranav Bansal",
           "alternateName": "okpranavbansal",
-          "jobTitle": "Site Reliability & Platform Engineer",
+          "jobTitle": "Senior AI Platform Engineer",
+          "email": "okpranavbansal@gmail.com",
           "url": "https://okpranavbansal.github.io",
           "sameAs": [
             "https://github.com/okpranavbansal/",
-            "https://www.linkedin.com/in/okpranavbansal/"
+            "https://www.linkedin.com/in/okpranavbansal/",
+            "https://x.com/okpranavbansal"
           ],
           "knowsAbout": [
             "Site Reliability Engineering",
@@ -56,12 +71,14 @@
             "AWS",
             "Terraform",
             "Argo CD",
-            "AI Infrastructure"
+            "AI Infrastructure",
+            "Apache Kafka",
+            "GCP Managed Service for Apache Kafka"
           ]
         }
       }
     </script>
-    <title>Pranav Bansal | SRE & AI Platform Engineer</title>
+    <title>Pranav Bansal | Senior AI Platform Engineer</title>
   </head>
   <body>
     <div id="root"></div>

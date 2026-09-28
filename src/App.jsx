@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Award,
   BadgeCheck,
@@ -18,10 +18,10 @@ import "./App.css";
 
 import { Card } from "./components/UI/Card.jsx";
 import { Badge } from "./components/UI/Badge.jsx";
-import { BootLoader } from "./components/UI/BootLoader.jsx";
 import { SectionHeader } from "./components/Sections/SectionHeader.jsx";
 import { MigrationsShowcase } from "./components/Sections/MigrationsShowcase.jsx";
 import { CommandSearch } from "./components/Sections/CommandSearch.jsx";
+import { BootLog } from "./components/UI/BootLog.jsx";
 
 const GithubIcon = ({ size = 18, ...props }) => (
   <svg
@@ -71,13 +71,24 @@ import {
   certificationShowcase,
 } from "./data/siteContent.js";
 
+const RESUME_PDF = "/resumes/pranav-bansal-sre-resume.pdf";
+
+function getInitialTheme() {
+  if (typeof window === "undefined") return "dark";
+  const stored = localStorage.getItem("theme");
+  if (stored === "light" || stored === "dark") return stored;
+  return window.matchMedia("(prefers-color-scheme: light)").matches
+    ? "light"
+    : "dark";
+}
+
 function parseBold(text) {
-  if (!text.includes('**')) return text;
+  if (!text.includes("**")) return text;
   const parts = text.split(/(\*\*.*?\*\*)/g);
   return (
     <>
       {parts.map((part, i) => {
-        if (part.startsWith('**') && part.endsWith('**')) {
+        if (part.startsWith("**") && part.endsWith("**")) {
           return <strong key={i}>{part.slice(2, -2)}</strong>;
         }
         return part;
@@ -86,9 +97,32 @@ function parseBold(text) {
   );
 }
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 function App() {
+  const [activeSection, setActiveSection] = useState("");
+  const [booting, setBooting] = useState(() => {
+    if (prefersReducedMotion()) return false;
+    try {
+      if (sessionStorage.getItem("hasBooted") === "1") return false;
+    } catch {
+      return true;
+    }
+    return true;
+  });
+  const finishBoot = useCallback(() => {
+    try {
+      sessionStorage.setItem("hasBooted", "1");
+    } catch {
+      /* private mode */
+    }
+    setBooting(false);
+  }, []);
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -96,62 +130,83 @@ function App() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
-    const elements = document.querySelectorAll(".reveal-on-scroll");
-    elements.forEach((el) => observer.observe(el));
-    return () => elements.forEach((el) => observer.unobserve(el));
+    const revealElements = document.querySelectorAll(".reveal-on-scroll");
+    revealElements.forEach((el) => revealObserver.observe(el));
+
+    const sectionIds = navItems.map(([, href]) => href.replace("#", ""));
+    const sectionElements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const navObserver = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]?.target?.id) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-20% 0px -55% 0px", threshold: [0, 0.25, 0.5] },
+    );
+    sectionElements.forEach((el) => navObserver.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => revealObserver.unobserve(el));
+      sectionElements.forEach((el) => navObserver.unobserve(el));
+    };
   }, []);
 
-  const { name, location, links, education, skills, experience } =
-    resumeData;
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "dark";
-    return localStorage.getItem("theme") || "dark";
-  });
-
-  const [isBooting, setIsBooting] = useState(() => {
-    if (typeof window === "undefined") return false;
-    const hasBooted = sessionStorage.getItem("hasBooted");
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    return !hasBooted && !prefersReducedMotion;
-  });
+  const { name, location, links, education, skills, experience } = resumeData;
+  const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("theme", theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        theme === "light" ? "#f8fafc" : "#050505",
+      );
+    }
   }, [theme]);
-
-  useEffect(() => {
-    if (!isBooting) return;
-    const timeout = window.setTimeout(() => {
-      setIsBooting(false);
-      sessionStorage.setItem("hasBooted", "true");
-    }, 1650);
-    return () => window.clearTimeout(timeout);
-  }, [isBooting]);
 
   const toggleTheme = () =>
     setTheme((current) => (current === "dark" ? "light" : "dark"));
 
   return (
-    <div className="site-shell">
-      {isBooting && <BootLoader />}
+    <>
+    {booting && <BootLog name={name} onDone={finishBoot} />}
+    <div className="site-shell" inert={booting || undefined}>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
 
       <header className="topbar" aria-label="Primary navigation">
         <a className="brand-mark" href="#top" aria-label="Pranav Bansal home">
           PB
         </a>
         <nav aria-label="Page sections">
-          {navItems.map(([label, href]) => (
-            <a key={href} href={href}>
-              {label}
-            </a>
-          ))}
+          {navItems.map(([label, href]) => {
+            const id = href.replace("#", "");
+            return (
+              <a
+                key={href}
+                href={href}
+                className={activeSection === id ? "nav-active" : undefined}
+                aria-current={activeSection === id ? "location" : undefined}
+              >
+                {label}
+              </a>
+            );
+          })}
         </nav>
         <div className="top-actions">
           <a
-            href="/resumes/pranav-bansal-sre-resume.pdf"
+            href={RESUME_PDF}
             target="_blank"
             rel="noreferrer"
             aria-label="Open resume PDF"
@@ -202,20 +257,31 @@ function App() {
         </div>
       </header>
 
-      <main id="top">
-        <section className="hero-section reveal-on-scroll" aria-label="Profile introduction">
-          <Card className="hero-copy" as="div" hasShadow>
+      <main id="main-content">
+        <section id="top" className="hero-section" aria-label="Profile introduction">
+          <Card className="hero-copy card--static" as="div" hasShadow>
             <div className="availability-pill">
               <span className="status-dot" />
-              <span>Gurgaon / Remote · SRE & AI infrastructure</span>
+              <span>Gurugram / Remote · AI platform infrastructure</span>
             </div>
-            <h1 className="text-gradient-shimmer">{name}</h1>
+            <h1 className="hero-name">{name}</h1>
             <p className="hero-title">
-              I build and operate the platform layer behind AI products: Kubernetes runtime, GitOps delivery, secure identity boundaries, useful observability and cost-aware cloud operations.
+              I build and operate the platform layer behind AI products:
+              Kubernetes runtime, GitOps delivery, secure identity boundaries,
+              useful observability and cost-aware cloud operations.
             </p>
             <div className="hero-actions">
               <a
                 className="primary-action"
+                href={RESUME_PDF}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Download aria-hidden="true" />
+                Resume PDF
+              </a>
+              <a
+                className="secondary-action"
                 href={links.linkedin}
                 target="_blank"
                 rel="noreferrer"
@@ -223,32 +289,42 @@ function App() {
                 <LinkedinIcon />
                 Connect on LinkedIn
               </a>
-              <a
-                className="secondary-action"
-                href="/resumes/pranav-bansal-sre-resume.pdf"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Download aria-hidden="true" />
-                Resume PDF
-              </a>
             </div>
           </Card>
           <MigrationsShowcase />
         </section>
 
-        <section className="proof-grid reveal-on-scroll" id="proof" aria-label="Proof metrics">
-          {proofStats.map((stat) => (
-            <Card key={stat.label} className="proof-card" hasShadow>
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-              <p>{stat.detail}</p>
-            </Card>
-          ))}
+        <section
+          className="proof-section reveal-on-scroll"
+          id="proof"
+          aria-labelledby="proof-heading"
+        >
+          <h2 id="proof-heading" className="proof-section-title">
+            Proof at a glance
+          </h2>
+          <div className="proof-grid">
+            {proofStats.map((stat) => (
+              <Card
+                key={stat.label}
+                className="proof-card card--static"
+                hasShadow
+              >
+                <strong
+                  className={
+                    stat.value.length > 6 ? "proof-value--long" : undefined
+                  }
+                >
+                  {stat.value}
+                </strong>
+                <span>{stat.label}</span>
+                <p>{stat.detail}</p>
+              </Card>
+            ))}
+          </div>
         </section>
 
         <section className="profile-grid reveal-on-scroll" aria-label="Operating profile">
-          <Card className="profile-card lead-card" as="div" hasShadow>
+          <Card className="profile-card lead-card card--static" as="div" hasShadow>
             <SectionHeader
               eyebrow="Operating Profile"
               title="Production platform work, explained through evidence."
@@ -257,11 +333,11 @@ function App() {
             />
             <div className="signal-grid">
               {operatingSignals.map((signal) => (
-                <Card key={signal.title} className="signal-card" as="article">
+                <article key={signal.title} className="signal-card">
                   <signal.icon aria-hidden="true" />
                   <h3>{signal.title}</h3>
                   <p>{signal.text}</p>
-                </Card>
+                </article>
               ))}
             </div>
           </Card>
@@ -327,7 +403,10 @@ function App() {
           />
           <div className="timeline">
             {experience.map((company) => (
-              <Card key={company.company} className="timeline-company-card">
+              <Card
+                key={company.company}
+                className="timeline-company-card card--static"
+              >
                 <div className="timeline-company-head">
                   <div>
                     <h3>{company.company}</h3>
@@ -378,26 +457,27 @@ function App() {
           </div>
         </section>
 
-        <section className="content-section credential-section reveal-on-scroll">
-          <Card className="credential-card" as="div">
+        <section id="education" className="content-section credential-section reveal-on-scroll">
+          <Card className="credential-card card--static" as="div">
             <GraduationCap aria-hidden="true" />
             <div>
-              <span>Education</span>
-              <h2>{education[0]?.degree}</h2>
+              <span>Background</span>
+              <h2>Education</h2>
+              <p>{education[0]?.degree}</p>
               <p>
                 {education[0]?.school} · {education[0]?.period} ·{" "}
                 {education[0]?.details}
               </p>
             </div>
           </Card>
-          <Card className="credential-card certification-card" as="div">
+          <Card className="credential-card certification-card card--static" as="div">
             <Award aria-hidden="true" />
             <div>
               <span>Certifications</span>
-              <h2>AWS, Datadog and Kubernetes fundamentals.</h2>
+              <h2>Cloud, observability, and Kubernetes credentials.</h2>
               <div className="cert-list">
                 {certificationShowcase.map((cert) => (
-                  <Card key={cert.title} className="cert-item">
+                  <div key={cert.title} className="cert-item">
                     <div>
                       <strong>{cert.title}</strong>
                       <p>
@@ -414,35 +494,47 @@ function App() {
                       View
                     </a>
                     <small>{cert.proof}</small>
-                  </Card>
+                  </div>
                 ))}
               </div>
             </div>
           </Card>
         </section>
 
-        <Card className="contact-section reveal-on-scroll" aria-label="Contact" as="section" hasShadow>
+        <Card
+          className="contact-section reveal-on-scroll card--static"
+          aria-label="Contact"
+          as="section"
+          hasShadow
+        >
           <div>
             <span className="section-kicker">
               <BadgeCheck aria-hidden="true" />
               Open to SRE, platform and AI infrastructure conversations
             </span>
-            <h2>
-              Looking for platform ownership with clear trade-off thinking?
-            </h2>
+            <h2>Hiring for SRE or platform roles? Let's talk.</h2>
           </div>
           <div className="contact-actions">
-            <a href={links.linkedin} target="_blank" rel="noreferrer">
-              <LinkedinIcon />
-              Start on LinkedIn
-            </a>
             <a
-              href="/resumes/pranav-bansal-sre-resume.pdf"
+              className="primary-action"
+              href={RESUME_PDF}
               target="_blank"
               rel="noreferrer"
             >
               <Download aria-hidden="true" />
               Resume PDF
+            </a>
+            <a className="secondary-action" href="mailto:okpranavbansal@gmail.com">
+              Email
+            </a>
+            <a
+              className="secondary-action"
+              href={links.linkedin}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <LinkedinIcon />
+              Start on LinkedIn
             </a>
           </div>
         </Card>
@@ -453,6 +545,7 @@ function App() {
         <span>Built with Vite + React · SRE / platform profile</span>
       </footer>
     </div>
+    </>
   );
 }
 

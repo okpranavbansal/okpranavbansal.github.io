@@ -1,7 +1,7 @@
 {
   "name": "Pranav Bansal",
   "title": "Site Reliability Engineer",
-  "location": "Gurgaon, India / Remote",
+  "location": "Gurugram, India / Remote",
   "links": {
     "linkedin": "https://www.linkedin.com/in/okpranavbansal/",
     "github": "https://github.com/okpranavbansal/"
@@ -30,7 +30,7 @@
     ],
     "Cloud & Infrastructure": [
       "GCP (GKE, Cloud Run, Cloud Build)",
-      "AWS (Legacy)",
+      "AWS (legacy workloads)",
       "Terraform",
       "CloudFormation",
       "Helm",
@@ -42,7 +42,9 @@
     ],
     "AI/ML Ops": [
       "GCP Vertex AI (Model Garden, Agent Engine)",
-      "Amazon Bedrock"
+      "Amazon Bedrock",
+      "Langfuse",
+      "LLM Observability"
     ],
     "Containers & CI/CD": [
       "Kubernetes (GKE, EKS)",
@@ -57,7 +59,7 @@
     ],
     "Observability": [
       "Datadog",
-      "New Relic (Legacy)",
+      "New Relic (legacy)",
       "Cloud Monitoring (GMP)",
       "Cloud Trace & Logging",
       "Prometheus",
@@ -79,34 +81,29 @@
       "Java",
       "PostgreSQL",
       "Valkey/Redis",
-      "MongoDB (Atlas & Self-Hosted)",
+      "MongoDB Atlas (self-host in progress)",
       "ClickHouse",
       "Neo4j",
       "DynamoDB",
-      "GCP Managed Kafka (MSAK)",
+      "Kafka",
       "BigQuery"
     ]
   },
   "experience": [
     {
-      "company": "wyzard.ai (Nexura)",
+      "company": "Wyzard.ai (Nexura)",
       "period": "Nov 2025 – Present",
-      "context": "Agentic AI Platform",
+      "context": "Agentic AI Platform · Continuous tenure since Jan 2024 (entity migration from Roundcircle Technologies)",
       "roles": [
-        {
-          "title": "Continuous tenure since Jan 2024 (entity migration from Roundcircle Technologies)",
-          "subtitle": "",
-          "bullets": []
-        },
         {
           "title": "Senior AI Platform Engineer (Startup; ~35-person team)",
           "subtitle": "Apr 2026 – Present",
           "bullets": [
-            "Orchestrated the migration of the core microservice fleet from Confluent Cloud to GCP Managed Service for Apache Kafka (MSAK), reducing monthly messaging infrastructure costs by ~88% and eliminating cross-cloud latency without requiring application code rewrites.",
             "Led cross-functional AWS → GCP migration for Wyzard's AI platform, executing zero-downtime cutovers for GKE workloads, Workload Identity, and ArgoCD GitOps pipelines.",
-            "Drove infrastructure security and compliance, establishing technical readiness for ISO 27001 certification through RBAC, network isolation, and encryption.",
-            "Operated scalable chat infrastructure (XMPP, OpenAI APIs) supporting a **10k+ MAU** chatbot, maintaining 99.99% uptime via proactive load testing and Linux resource tuning.",
-            "Engineered automated quality gates for AI model outputs on GCP Vertex AI, integrating standard Datadog telemetry to monitor model reliability and API latency."
+            "Reduced monthly messaging infrastructure cost by ~88% by migrating the microservice fleet from Confluent Cloud to GCP Managed Kafka via a zero-message-loss drain-and-repoint GitOps cutover inside a 4-hour window, with no application code rewrites.",
+            "Drove infrastructure security and compliance, establishing technical readiness for ISO 27001 certification through RBAC, network isolation, and encryption aligned with SOC2/GDPR controls.",
+            "Maintained 99.99% uptime for chat infrastructure (XMPP, OpenAI APIs) supporting a **10k+ MAU** chatbot, by load testing and Linux resource tuning.",
+            "Engineered automated quality gates for AI model outputs on GCP Vertex AI, integrating Datadog and Langfuse telemetry to monitor model reliability and API latency."
           ]
         },
         {
@@ -128,10 +125,10 @@
           "title": "Engineer (DevOps / SRE)",
           "subtitle": "Jun 2025 – Oct 2025",
           "bullets": [
-            "**ASTRA (OLX Indonesia):** Supported observability migration to Datadog/Loki for 80+ microservices serving **9M+ MAU**, optimizing alerting thresholds to reduce noisy alerts by 25%.",
-            "**Wyzard.ai:** Built CI/CD pipelines with auto-scaling runners and deployed the LGTM observability stack, reducing deployment failures by 30% and significantly improving MTTR.",
-            "**Wyzard.ai:** Executed seamless AWS cross-account migrations, re-architecting IAM trust policies, VPC peering, and underlying network routing with zero production downtime.",
-            "**Wyzard.ai:** Reduced AWS infrastructure spend by 50–60% via Spot instance strategies and Linux-level RDS tuning; managed highly-available databases with active backup strategies."
+            "**ASTRA (OLX Indonesia):** Supported observability migration from New Relic to Datadog/Loki for 80+ microservices serving **9M+ MAU**, optimizing alerting thresholds to reduce noisy alerts by 25%.",
+            "**Wyzard.ai:** Reduced deployment failures by 30% by building CI/CD pipelines with auto-scaling runners and the LGTM observability stack.",
+            "**Wyzard.ai:** Executed AWS cross-account migrations, re-architecting IAM trust policies, VPC peering, and network routing with zero production downtime.",
+            "**Wyzard.ai:** Reduced AWS infrastructure spend by 50–60% via Spot instance strategies and Linux-level RDS tuning; managed highly available databases with active backup strategies."
           ]
         },
         {
@@ -148,7 +145,7 @@
   "projects": [
     {
       "title": "Gemma 4 Serverless GPU Inference",
-      "description": "Engineered a scalable, serverless deployment for the open-weights google/gemma-4-E4B-it model on GCP Cloud Run using attached NVIDIA L4 GPUs. Utilized the Run:ai GCS streamer to dynamically load 15GB weights at startup and configured vLLM for on-the-fly FP8 quantization."
+      "description": "Deployed open-weights `google/gemma-4-E4B-it` on GCP Cloud Run with NVIDIA L4 GPUs, Run:ai GCS streamer for dynamic weight loading, and vLLM FP8 quantization."
     },
     {
       "title": "AWS → GCP Migration Playbook",

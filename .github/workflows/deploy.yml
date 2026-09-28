@@ -3,7 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - v2-ai-era-portfolio
       - main
   workflow_dispatch:
 

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Terminal, Sparkles } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Card } from '../UI/Card.jsx';
 import { faq } from '../../data/siteContent.js';
 
@@ -14,43 +14,42 @@ export function CommandSearch() {
   }, [query]);
 
   return (
-    <Card className="ask-panel agentic-terminal" aria-label="Ask about Pranav" hasShadow>
+    <Card
+      className="ask-panel profile-search card--static"
+      aria-label="Profile search"
+      hasShadow
+    >
       <div className="ask-topline">
-        <div className="terminal-dots">
-          <span className="dot dot-red"></span>
-          <span className="dot dot-yellow"></span>
-          <span className="dot dot-green"></span>
-        </div>
-        <div className="terminal-title">
-          <Terminal size={14} aria-hidden="true" />
-          <span>pb-agent --query</span>
-        </div>
+        <Search size={16} aria-hidden="true" className="search-icon" />
+        <span className="search-panel-title">Profile search</span>
       </div>
       <label className="ask-input">
-        <Sparkles size={16} aria-hidden="true" className="agent-sparkle" />
-        <span className="sr-only">Search portfolio answers</span>
+        <span className="sr-only">Search profile answers</span>
         <input
+          type="search"
+          name="profile-search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Ask the agent about platform, GitOps, or AI infra..."
+          placeholder="Roles, stack, proof signals…"
+          autoComplete="off"
         />
       </label>
       <div className="answer-stack">
         {results.length ? (
           results.map((item) => (
-            <Card key={item.q} className="answer-card" as="article">
+            <article key={item.q} className="answer-card">
               <h3>{item.q}</h3>
               <p>{item.a}</p>
-            </Card>
+            </article>
           ))
         ) : (
-          <Card className="answer-card" as="article">
+          <article className="answer-card">
             <h3>No direct match yet</h3>
             <p>
               Use the case studies and experience timeline below for the deeper
               engineering proof.
             </p>
-          </Card>
+          </article>
         )}
       </div>
     </Card>

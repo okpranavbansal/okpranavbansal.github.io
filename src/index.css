@@ -23,26 +23,25 @@
   --font-heading: "Outfit", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
   
-  /* Rich Dark Mode Palette */
   --bg: #050505;
   --panel: rgba(18, 18, 20, 0.6);
   --panel-strong: rgba(22, 22, 25, 0.85);
   --panel-soft: rgba(255, 255, 255, 0.04);
   --panel-hover: rgba(255, 255, 255, 0.08);
+  --surface-subtle: rgba(255, 255, 255, 0.035);
   
-  /* Glassmorphism Tokens */
   --glass-bg: rgba(15, 15, 18, 0.45);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-hover: rgba(255, 255, 255, 0.15);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+  --card-inner-highlight: rgba(255, 255, 255, 0.05);
   
   --line: rgba(255, 255, 255, 0.1);
   --line-strong: rgba(255, 255, 255, 0.2);
   --text: #f4f7fb;
   --muted: #a1a1aa;
-  --soft: #71717a;
+  --soft: #8b8b96;
   
-  /* Vibrant Accent Colors */
   --accent-cyan: #22d3ee;
   --accent-cyan-glow: rgba(34, 211, 238, 0.2);
   --accent-indigo: #818cf8;
@@ -51,7 +50,6 @@
   --accent-amber: #fbbf24;
   --accent-rose: #f43f5e;
   
-  /* Semantic Aliases */
   --cyan: var(--accent-cyan);
   --green: var(--accent-emerald);
   --amber: var(--accent-amber);
@@ -63,7 +61,6 @@
   --radius-lg: 16px;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
   
-  /* Spacing Scale Tokens */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 12px;
@@ -85,11 +82,13 @@
   --panel-strong: rgba(255, 255, 255, 0.95);
   --panel-soft: rgba(15, 23, 42, 0.03);
   --panel-hover: rgba(15, 23, 42, 0.06);
+  --surface-subtle: rgba(15, 23, 42, 0.04);
   
   --glass-bg: rgba(255, 255, 255, 0.6);
   --glass-border: rgba(15, 23, 42, 0.08);
   --glass-border-hover: rgba(15, 23, 42, 0.15);
   --glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.08);
+  --card-inner-highlight: rgba(15, 23, 42, 0.04);
   
   --line: rgba(15, 23, 42, 0.1);
   --line-strong: rgba(15, 23, 42, 0.2);
@@ -97,7 +96,6 @@
   --muted: #475569;
   --soft: #64748b;
   
-  /* Light mode adjusted accents */
   --accent-cyan: #0891b2;
   --accent-cyan-glow: rgba(8, 145, 178, 0.15);
   --accent-indigo: #4f46e5;
@@ -119,18 +117,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 15% 10%, var(--accent-cyan-glow), transparent 45rem),
-    radial-gradient(circle at 85% 20%, var(--accent-indigo-glow), transparent 40rem),
-    radial-gradient(circle at 50% 80%, rgba(52, 211, 153, 0.08), transparent 40rem),
-    var(--bg);
-  background-attachment: fixed;
-}
-
-:root[data-theme='light'] body {
-  background:
-    radial-gradient(circle at 15% 10%, var(--accent-cyan-glow), transparent 45rem),
-    radial-gradient(circle at 85% 20%, var(--accent-indigo-glow), transparent 40rem),
-    radial-gradient(circle at 50% 80%, rgba(5, 150, 105, 0.05), transparent 40rem),
+    radial-gradient(circle at 20% 0%, var(--accent-cyan-glow), transparent 50rem),
     var(--bg);
   background-attachment: fixed;
 }
@@ -166,12 +153,10 @@ svg {
   outline-offset: 3px;
 }
 
-/* Scroll Reveal Animations */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(24px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-visible {
@@ -179,32 +164,10 @@ svg {
   transform: translateY(0);
 }
 
-/* Text Gradients */
-.text-gradient-shimmer {
-  background: linear-gradient(
-    to right,
-    var(--text) 20%,
-    var(--accent-cyan) 40%,
-    var(--accent-indigo) 60%,
-    var(--text) 80%
-  );
-  background-size: 200% auto;
-  color: #000;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 5s linear infinite;
-}
-
-@keyframes shimmer {
-  to {
-    background-position: 200% center;
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
-}
-
-.text-gradient-accent {
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
