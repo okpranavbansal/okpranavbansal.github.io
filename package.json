@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "sync": "node scripts/sync-resume.js",
-    "dev": "npm run sync && vite",
+    "dev": "npm run sync:optional && vite",
     "build": "npm run sync:optional && vite build",
     "sync:optional": "node scripts/sync-resume.js --optional",
     "lint": "eslint .",

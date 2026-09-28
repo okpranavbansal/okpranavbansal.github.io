@@ -15,6 +15,11 @@ export const proofStats = [
     detail: "ECS Fargate to GKE",
   },
   {
+    value: "88%",
+    label: "Messaging cost reduced",
+    detail: "Confluent to GCP MSAK",
+  },
+  {
     value: "40%",
     label: "Deployment toil reduced",
     detail: "GitOps + KSOPS flow",
@@ -93,12 +98,12 @@ export const caseStudies = [
     type: "Operations",
     title: "Observability, cost, and data operations",
     summary:
-      "Worked across telemetry, cost and data operations: Datadog/Grafana/Loki migrations, AWS Spot and RDS tuning and operational stores such as MongoDB Atlas, DynamoDB, ClickHouse and Neo4j.",
+      "Worked across telemetry, cost and data operations: Datadog/Grafana/Loki migrations, Confluent to GCP MSAK messaging migrations, AWS Spot and RDS tuning, and operational stores such as MongoDB (managed and self-hosted), DynamoDB, ClickHouse, and Neo4j.",
     points: [
+      "Confluent to GCP MSAK (~88% savings)",
       "Datadog / Grafana / Loki",
       "Spot strategy + RDS tuning",
-      "MongoDB Atlas + DynamoDB",
-      "ClickHouse + Neo4j",
+      "Self-Hosted MongoDB + ClickHouse",
     ],
     icon: Database,
   },

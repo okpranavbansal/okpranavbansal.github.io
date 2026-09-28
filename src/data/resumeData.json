@@ -67,11 +67,11 @@
       "Java",
       "PostgreSQL",
       "Valkey/Redis",
-      "MongoDB Atlas",
+      "MongoDB (Atlas & Self-Hosted)",
       "ClickHouse",
       "Neo4j",
       "DynamoDB",
-      "Kafka",
+      "GCP Managed Kafka (MSAK)",
       "BigQuery"
     ]
   },
@@ -90,6 +90,7 @@
           "title": "Senior AI Platform Engineer (Startup; ~35-person team)",
           "subtitle": "Apr 2026 – Present",
           "bullets": [
+            "Orchestrated the migration of the core microservice fleet from Confluent Cloud to GCP Managed Service for Apache Kafka (MSAK), reducing monthly messaging infrastructure costs by ~88% and eliminating cross-cloud latency without requiring application code rewrites.",
             "Led cross-functional AWS → GCP migration for Wyzard's AI platform, executing zero-downtime cutovers for GKE workloads, Workload Identity, and ArgoCD GitOps pipelines.",
             "Drove infrastructure security and compliance, establishing technical readiness for ISO 27001 certification through RBAC, network isolation, and encryption.",
             "Operated scalable chat infrastructure (XMPP, OpenAI APIs) supporting a **10k+ MAU** chatbot, maintaining 99.99% uptime via proactive load testing and Linux resource tuning.",
