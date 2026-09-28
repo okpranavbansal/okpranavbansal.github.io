@@ -126,9 +126,9 @@ export const labProjects = [
     text: 'Engineered a deployment for google/gemma-4-E4B-it on Cloud Run using attached NVIDIA L4 GPUs, Run:ai GCS streamer, and on-the-fly FP8 quantization.',
   },
   {
-    title: 'Gram Text Editor',
-    status: 'Systems Programming (C)',
-    text: 'A terminal-based text editor built from scratch in C, managing raw terminal I/O, POSIX termios, and low-level memory allocation.',
+    title: 'Personal Finance Engineering',
+    status: 'System Design (Ongoing)',
+    text: 'Operationalizing a Buffett/Munger-inspired finance system, tracking credit profiles (CIBIL/Experian), and optimizing reward-stacking credit card strategies.',
   },
 ];
 
@@ -143,11 +143,11 @@ export const faq = [
   },
   {
     q: "What stack is interview-ready?",
-    a: "Kubernetes, GKE, AWS, GCP, Terraform, Argo CD, SOPS/KSOPS, Datadog, Grafana, Vertex AI, OpenAI APIs, Python, Bash, and Go.",
+    a: "Kubernetes, GKE, Cloud Run, AWS, GCP, Terraform, Argo CD, SOPS, Datadog, MSAK/Kafka, Vertex AI, OpenAI APIs, Python, Bash, and Go.",
   },
   {
     q: "What makes the profile different from generic DevOps?",
-    a: "I am a 'Curious Builder'. I operate as a T-shaped engineer—deeply technical in SRE/Platform, but broadly curious about AI, product, and finance.",
+    a: "I am a 'Curious Builder'. I operate as a T-shaped engineer—deeply technical in SRE/Platform, but broadly curious about AI, product, and value investing.",
   },
 ];
 
@@ -226,4 +226,46 @@ export const certificationShowcase = [
     proof: "Credential details listed on LinkedIn or available on request.",
     href: "https://www.linkedin.com/in/okpranavbansal/details/certifications/",
   },
+];
+
+export const migrationsData = [
+  {
+    id: "aws-gcp",
+    title: "AWS to GCP Orchestration",
+    subtitle: "ECS Fargate → GKE",
+    icon: Cloud,
+    from: "AWS ECS Fargate",
+    to: "GCP GKE + Workload Identity",
+    metrics: [
+      { value: "0", label: "Downtime during cutover" },
+      { value: "40%", label: "Deployment Toil Reduction" }
+    ],
+    description: "Led the migration of the Wyzard AI platform from AWS to GCP. Mapped AWS IAM roles to GCP Workload Identity, transitioned from ECS to a Kubernetes runtime (GKE), and enforced GitOps delivery via ArgoCD with zero production downtime."
+  },
+  {
+    id: "messaging-msak",
+    title: "Messaging Infrastructure",
+    subtitle: "Confluent → GCP MSAK",
+    icon: Network,
+    from: "Confluent Cloud",
+    to: "GCP Managed Service for Kafka",
+    metrics: [
+      { value: "88%", label: "Reduction in messaging costs" },
+      { value: "Sub-ms", label: "Latency improvement" }
+    ],
+    description: "Orchestrated the migration of the core microservice fleet away from Confluent Cloud to GCP MSAK. Eliminated cross-cloud latency and massive egress charges without requiring application code rewrites."
+  },
+  {
+    id: "observability-datadog",
+    title: "Observability at Scale",
+    subtitle: "ASTRA (OLX) Telemetry",
+    icon: Activity,
+    from: "Fragmented Logs & APM",
+    to: "Datadog, Grafana & Loki",
+    metrics: [
+      { value: "9M+", label: "MAU Handled" },
+      { value: "25%", label: "Reduction in noisy alerts" }
+    ],
+    description: "Supported the observability migration for 80+ microservices in ASTRA (OLX Indonesia). Optimized alerting thresholds, rolled out the LGTM stack for Wyzard, and integrated Datadog LLM observability for AI model pipelines."
+  }
 ];

@@ -20,7 +20,7 @@ import { Card } from "./components/UI/Card.jsx";
 import { Badge } from "./components/UI/Badge.jsx";
 import { BootLoader } from "./components/UI/BootLoader.jsx";
 import { SectionHeader } from "./components/Sections/SectionHeader.jsx";
-import { ArchitectureVisual } from "./components/Sections/ArchitectureVisual.jsx";
+import { MigrationsShowcase } from "./components/Sections/MigrationsShowcase.jsx";
 import { CommandSearch } from "./components/Sections/CommandSearch.jsx";
 
 const GithubIcon = ({ size = 18, ...props }) => (
@@ -46,6 +46,19 @@ const LinkedinIcon = ({ size = 18, ...props }) => (
     {...props}
   >
     <path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z" />
+  </svg>
+);
+
+const TwitterIcon = ({ size = 18, ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    {...props}
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
 
@@ -177,6 +190,15 @@ function App() {
           >
             <LinkedinIcon />
           </a>
+          <a
+            href="https://x.com/okpranavbansal"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="X / Twitter"
+            title="Open X / Twitter"
+          >
+            <TwitterIcon />
+          </a>
         </div>
       </header>
 
@@ -212,7 +234,7 @@ function App() {
               </a>
             </div>
           </Card>
-          <ArchitectureVisual />
+          <MigrationsShowcase />
         </section>
 
         <section className="proof-grid reveal-on-scroll" id="proof" aria-label="Proof metrics">

@@ -29,13 +29,14 @@
       "Capacity Planning"
     ],
     "Cloud & Infrastructure": [
-      "AWS",
-      "GCP",
+      "GCP (GKE, Cloud Run, Cloud Build)",
+      "AWS (Legacy)",
       "Terraform",
       "CloudFormation",
       "Helm",
       "Kustomize",
       "Workload Identity",
+      "Gateway API",
       "Cloud Armor",
       "IAM"
     ],
@@ -50,16 +51,27 @@
       "ArgoCD",
       "Jenkins",
       "GitLab CI",
+      "Artifact Registry",
       "SOPS/KSOPS",
       "git-crypt"
     ],
     "Observability": [
+      "Datadog",
+      "New Relic (Legacy)",
+      "Cloud Monitoring (GMP)",
+      "Cloud Trace & Logging",
       "Prometheus",
       "Grafana",
       "Loki",
       "Tempo",
-      "Datadog",
-      "New Relic"
+      "Kafbat"
+    ],
+    "Self-hosted Tools": [
+      "Metabase",
+      "n8n",
+      "WordPress",
+      "RedisInsight",
+      "Qodo (Cloud Run)"
     ],
     "Languages & Data": [
       "Python",

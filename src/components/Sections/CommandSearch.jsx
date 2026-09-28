@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Command, Search } from 'lucide-react';
+import { Terminal, Sparkles } from 'lucide-react';
 import { Card } from '../UI/Card.jsx';
 import { faq } from '../../data/siteContent.js';
 
@@ -14,18 +14,25 @@ export function CommandSearch() {
   }, [query]);
 
   return (
-    <Card className="ask-panel" aria-label="Ask about Pranav" hasShadow>
+    <Card className="ask-panel agentic-terminal" aria-label="Ask about Pranav" hasShadow>
       <div className="ask-topline">
-        <Command aria-hidden="true" />
-        <span>Ask about reliability, cloud, or AI platform work</span>
+        <div className="terminal-dots">
+          <span className="dot dot-red"></span>
+          <span className="dot dot-yellow"></span>
+          <span className="dot dot-green"></span>
+        </div>
+        <div className="terminal-title">
+          <Terminal size={14} aria-hidden="true" />
+          <span>pb-agent --query</span>
+        </div>
       </div>
       <label className="ask-input">
-        <Search aria-hidden="true" />
+        <Sparkles size={16} aria-hidden="true" className="agent-sparkle" />
         <span className="sr-only">Search portfolio answers</span>
         <input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Try: migration, GitOps, stack, roles..."
+          placeholder="Ask the agent about platform, GitOps, or AI infra..."
         />
       </label>
       <div className="answer-stack">
