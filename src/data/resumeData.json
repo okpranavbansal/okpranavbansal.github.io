@@ -66,11 +66,13 @@
       "Bash",
       "Java",
       "PostgreSQL",
-      "Redis",
+      "Valkey/Redis",
       "MongoDB Atlas",
       "ClickHouse",
       "Neo4j",
-      "DynamoDB"
+      "DynamoDB",
+      "Kafka",
+      "BigQuery"
     ]
   },
   "experience": [
@@ -132,8 +134,8 @@
   ],
   "projects": [
     {
-      "title": "Gemma 4 Serverless Inference",
-      "description": "Hosted the Gemma 4 multimodal LLM on Google Cloud Run utilizing attached GPUs, Cloud Storage FUSE, and vLLM."
+      "title": "Gemma 4 Serverless GPU Inference",
+      "description": "Engineered a scalable, serverless deployment for the open-weights google/gemma-4-E4B-it model on GCP Cloud Run using attached NVIDIA L4 GPUs. Utilized the Run:ai GCS streamer to dynamically load 15GB weights at startup and configured vLLM for on-the-fly FP8 quantization."
     },
     {
       "title": "AWS → GCP Migration Playbook",

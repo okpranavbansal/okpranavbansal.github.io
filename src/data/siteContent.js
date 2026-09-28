@@ -49,8 +49,8 @@ export const operatingSignals = [
   },
   {
     icon: Activity,
-    title: "Reliability loops",
-    text: "SLO thinking, Datadog/Grafana observability, proactive load testing, and maintaining 99.99% uptime for scaled chat infrastructure.",
+    title: "Reliability & AI Ops",
+    text: "SLO thinking, Datadog LLM observability, proactive load testing, and maintaining 99.99% uptime for agentic AI workloads and chat infrastructure.",
   },
   {
     icon: ShieldCheck,
@@ -116,9 +116,9 @@ export const labProjects = [
     text: 'Built a Kafka, Apache Pinot, and Superset analytics platform under hackathon constraints.',
   },
   {
-    title: 'Gemma 4 on Cloud Run',
+    title: 'Gemma 4 Serverless GPU Inference',
     status: 'Serverless AI inference',
-    text: 'Hosted the Gemma 4 LLM on Google Cloud Run using attached GPUs, decoupled GCS storage, and vLLM for high-throughput serving.',
+    text: 'Engineered a deployment for google/gemma-4-E4B-it on Cloud Run using attached NVIDIA L4 GPUs, Run:ai GCS streamer, and on-the-fly FP8 quantization.',
   },
   {
     title: 'Gram Text Editor',
@@ -130,7 +130,7 @@ export const labProjects = [
 export const faq = [
   {
     q: "What kind of roles is Pranav targeting?",
-    a: "SRE, Platform Engineering, AI Infrastructure, Cloud Infrastructure, and leadership-facing platform ownership roles (CEO/CTO trajectory).",
+    a: "SRE, Platform Engineering, AI Platform Engineer, Cloud Infrastructure, and leadership-facing platform ownership roles (CEO/CTO trajectory).",
   },
   {
     q: "What is the strongest proof signal?",
