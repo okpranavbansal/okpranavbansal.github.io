@@ -16,6 +16,14 @@ const OUTPUT_DIR = path.resolve(__dirname, "../src/data");
 const OUTPUT_PATH = path.join(OUTPUT_DIR, "resumeData.json");
 const optionalSync = process.argv.includes("--optional");
 
+function cleanWikilinks(str) {
+  if (!str) return "";
+  return str.replace(/\[\[([^\]]+)\]\]/g, (_, inner) => {
+    const parts = inner.split("|");
+    return parts.length > 1 ? parts[1].trim() : parts[0].trim();
+  });
+}
+
 function parseMarkdown(mdContent) {
   const lines = mdContent.split(/\r?\n/);
   const data = {
@@ -34,7 +42,7 @@ function parseMarkdown(mdContent) {
   let currentRole = null;
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
+    const line = cleanWikilinks(lines[i].trim());
     if (!line) continue;
 
     // Header info parsing

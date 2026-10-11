@@ -81,7 +81,7 @@
       "Java",
       "PostgreSQL",
       "Valkey/Redis",
-      "MongoDB Atlas (self-host in progress)",
+      "MongoDB (GKE Community Operator + mongot)",
       "ClickHouse",
       "Neo4j",
       "DynamoDB",

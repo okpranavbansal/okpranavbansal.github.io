@@ -97,12 +97,12 @@ export const caseStudies = [
     type: "Operations",
     title: "Observability, cost, and data operations",
     summary:
-      "Worked across telemetry, cost and data operations: New Relic to Datadog/Grafana/Loki migrations, Confluent to GCP MSAK messaging cutovers, AWS Spot and RDS tuning, and operational stores such as MongoDB (managed; self-hosted migration in progress), DynamoDB, ClickHouse, and Neo4j.",
+      "Worked across telemetry, cost and data operations: New Relic to Datadog/Grafana/Loki migrations, Confluent to GCP MSAK messaging cutovers (~88% cost cut), MongoDB Atlas to GKE self-managed migration (Community Operator + mongot search), AWS Spot and RDS tuning, and operational stores such as ClickHouse, DynamoDB, and Neo4j.",
     points: [
       "Confluent to GCP MSAK (~88% savings)",
       "Datadog / Langfuse / Grafana / Loki",
+      "MongoDB self-host (GKE Operator + mongot)",
       "Spot strategy + RDS tuning",
-      "MongoDB self-host (in progress) + ClickHouse",
     ],
     icon: Database,
   },
