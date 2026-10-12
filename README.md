@@ -1,10 +1,10 @@
 # Pranav Bansal — Portfolio Website
 
-Personal portfolio and interactive resume for Pranav Bansal, a Senior AI Platform Engineer focused on Site Reliability, cloud migrations (AWS to GCP), Kubernetes, and AI platform operations.
+Personal portfolio and interactive resume for Pranav Bansal, a Senior AI Platform Engineer focused on Site Reliability, cloud migrations (AWS to GCP), Kubernetes and AI platform operations.
 
 ## Overview
 
-This repository hosts the source code for [okpranavbansal.github.io](https://okpranavbansal.github.io), built with React and Vite. It serves as a digital profile, mapping out production platform work, proof points, and case studies.
+This repository hosts the source code for [okpranavbansal.github.io](https://okpranavbansal.github.io), built with React and Vite. It serves as a digital profile, mapping out production platform work, proof points and case studies.
 
 ## Tech Stack
 

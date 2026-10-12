@@ -475,7 +475,7 @@ function App() {
             <Award aria-hidden="true" />
             <div>
               <span>Certifications</span>
-              <h2>Cloud, observability, and Kubernetes credentials.</h2>
+              <h2>Cloud, observability and Kubernetes credentials.</h2>
               <div className="cert-list">
                 {certificationShowcase.map((cert) => (
                   <div key={cert.title} className="cert-item">

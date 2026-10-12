@@ -44,7 +44,7 @@ export const operatingSignals = [
   {
     icon: Cloud,
     title: "Cloud migrations",
-    text: "AWS to GCP migration work across compute, IAM, networking, gateway policy, and runtime delivery.",
+    text: "AWS to GCP migration work across compute, IAM, networking, gateway policy and runtime delivery.",
   },
   {
     icon: GitBranch,
@@ -54,12 +54,12 @@ export const operatingSignals = [
   {
     icon: Activity,
     title: "Reliability & AI Ops",
-    text: "Datadog and Langfuse for LLM observability, and 99.99% uptime for the chat infrastructure (10k+ MAU).",
+    text: "Datadog and Langfuse for LLM observability and 99.99% uptime for the chat infrastructure (10k+ MAU).",
   },
   {
     icon: ShieldCheck,
     title: "Secure cloud boundaries",
-    text: "Establishing ISO 27001 technical readiness and SOC2/GDPR-aligned controls through RBAC, network isolation, and least-privilege defaults.",
+    text: "Establishing ISO 27001 technical readiness and SOC2/GDPR-aligned controls through RBAC, network isolation and least-privilege defaults.",
   },
 ];
 
@@ -83,7 +83,7 @@ export const caseStudies = [
     type: "Delivery",
     title: "GitOps delivery and secrets flow",
     summary:
-      "Built a repeatable delivery model with Argo CD App of Apps and SOPS/KSOPS so releases could move through encrypted configuration, drift visibility, and less manual deployment work.",
+      "Built a repeatable delivery model with Argo CD App of Apps and SOPS/KSOPS so releases could move through encrypted configuration, drift visibility and less manual deployment work.",
     points: [
       "Argo CD App of Apps",
       "SOPS / KSOPS decryption",
@@ -95,9 +95,9 @@ export const caseStudies = [
   {
     number: "03",
     type: "Operations",
-    title: "Observability, cost, and data operations",
+    title: "Observability, cost and data operations",
     summary:
-      "Worked across telemetry, cost and data operations: New Relic to Datadog/Grafana/Loki migrations, Confluent to GCP MSAK messaging cutovers (~88% cost cut), MongoDB Atlas to GKE self-managed migration (Community Operator + mongot search), AWS Spot and RDS tuning, and operational stores such as ClickHouse, DynamoDB, and Neo4j.",
+      "Worked across telemetry, cost and data operations: New Relic to Datadog/Grafana/Loki migrations, Confluent to GCP MSAK messaging cutovers (~88% cost cut), MongoDB Atlas to GKE self-managed migration (Community Operator + mongot search), AWS Spot and RDS tuning and operational stores such as ClickHouse, DynamoDB and Neo4j.",
     points: [
       "Confluent to GCP MSAK (~88% savings)",
       "Datadog / Langfuse / Grafana / Loki",
@@ -112,24 +112,24 @@ export const labProjects = [
   {
     title: 'AWS to GCP Migration Playbook',
     status: 'Documentation system',
-    text: 'A practical guide for ECS to GKE workload movement, IAM to Workload Identity mapping, and VPC/network rebuild decisions.',
+    text: 'A practical guide for ECS to GKE workload movement, IAM to Workload Identity mapping and VPC/network rebuild decisions.',
   },
   {
     title: 'Real-time Analytics Hackathon',
     status: 'Runner Up, 2025',
-    text: 'Built a Kafka, Apache Pinot, and Superset analytics platform under hackathon constraints.',
+    text: 'Built a Kafka, Apache Pinot and Superset analytics platform under hackathon constraints.',
   },
   {
     title: 'Gemma 4 Serverless GPU Inference',
     status: 'Serverless AI inference',
-    text: 'Deployed google/gemma-4-E4B-it on Cloud Run with an NVIDIA L4 GPU, a Run:ai GCS streamer, and vLLM FP8 quantization.',
+    text: 'Deployed google/gemma-4-E4B-it on Cloud Run with an NVIDIA L4 GPU, a Run:ai GCS streamer and vLLM FP8 quantization.',
   },
 ];
 
 export const faq = [
   {
     q: "What kind of roles is Pranav targeting?",
-    a: "SRE, Platform Engineering, AI Platform Engineer, Cloud Infrastructure, and leadership-facing platform ownership roles.",
+    a: "SRE, Platform Engineering, AI Platform Engineer, Cloud Infrastructure and leadership-facing platform ownership roles.",
   },
   {
     q: "What is the strongest proof signal?",
@@ -137,7 +137,7 @@ export const faq = [
   },
   {
     q: "What stack is interview-ready?",
-    a: "Kubernetes, GKE, Cloud Run, AWS, GCP, Terraform, Argo CD, SOPS, Datadog, Langfuse, MSAK/Kafka, Vertex AI, OpenAI APIs, Python, and Bash.",
+    a: "Kubernetes, GKE, Cloud Run, AWS, GCP, Terraform, Argo CD, SOPS, Datadog, Langfuse, MSAK/Kafka, Vertex AI, OpenAI APIs, Python and Bash.",
   },
   {
     q: "What makes the profile different from generic DevOps?",
@@ -198,7 +198,7 @@ export const migrationsData = [
       { value: "0", label: "Downtime during cutover" },
       { value: "Route 53", label: "Moved to Cloud DNS" }
     ],
-    description: "Led the migration of the Wyzard AI platform from AWS to GCP. Mapped AWS IAM roles to GCP Workload Identity, resolved ARM (Graviton) to x86 package dependencies, transitioned from ECS to GKE, and enforced GitOps delivery via ArgoCD with zero production downtime."
+    description: "Led the migration of the Wyzard AI platform from AWS to GCP. Mapped AWS IAM roles to GCP Workload Identity, resolved ARM (Graviton) to x86 package dependencies, transitioned from ECS to GKE and enforced GitOps delivery via ArgoCD with zero production downtime."
   },
   {
     id: "messaging-msak",
